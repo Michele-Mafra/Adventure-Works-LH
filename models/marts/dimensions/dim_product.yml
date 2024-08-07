@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: dim_product
+    description: "Dimensão de Produtos"
+    columns:
+      - name: product_id
+        description: "ID do Produto"
+      - name: product_name
+        description: "Nome do Produto"
+      - name: product_category
+        description: "Categoria do Produto"
+      - name: product_sub_category
+        description: "Subcategoria do Produto"
+      - name: product_brand
+        description: "Marca do Produto"
+      - name: product_color
+        description: "Cor do Produto"
+      - name: product_size
+        description: "Tamanho do Produto"
+      - name: product_price
+        description: "Preço do Produto"

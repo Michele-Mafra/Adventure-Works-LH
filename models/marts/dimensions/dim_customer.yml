@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: "Dimensão de Clientes"
+    columns:
+      - name: customer_id
+        description: "ID do Cliente"
+      - name: customer_name
+        description: "Nome do Cliente"
+      - name: customer_email
+        description: "Email do Cliente"
+      - name: customer_address
+        description: "Endereço do Cliente"
+      - name: customer_city
+        description: "Cidade do Cliente"
+      - name: customer_state
+        description: "Estado do Cliente"
+      - name: customer_country
+        description: "País do Cliente"
+      - name: customer_zipcode
+        description: "CEP do Cliente"

@@ -1,0 +1,10 @@
+my_project:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: third-anvil-431614-c5
+      dataset: third-anvil-431614-c5.dbt_rafabertuol02
+      location: US
+      keyfile: /Users/rafaelabertuol/Desktop/DESAFIO LH/third-anvil-431614-c5-61f879affe61.json

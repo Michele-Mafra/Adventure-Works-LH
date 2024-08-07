@@ -1,0 +1,10 @@
+version: 2
+
+models:
+  - name: dim_payment_method
+    description: "Dimensão de Métodos de Pagamento"
+    columns:
+      - name: payment_method_id
+        description: "ID do Método de Pagamento"
+      - name: method_name
+        description: "Nome do Método de Pagamento"
