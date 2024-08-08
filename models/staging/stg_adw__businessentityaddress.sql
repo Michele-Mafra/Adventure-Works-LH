@@ -5,4 +5,5 @@ with source as (
     from {{ source('sap_adw', 'businessentityaddress') }}
 )
 
-select * from source
+select * 
+from source

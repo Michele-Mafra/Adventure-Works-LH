@@ -1,8 +1,9 @@
 with source as (
     select
-        countryregioncode as country_code,
-        name as country_name
+        countryregioncode as country_code
+        , name as country_name
     from {{ source('sap_adw', 'countryregion') }}
 )
 
-select * from source
+select *
+from source

@@ -75,3 +75,8 @@ sources:
         columns:
           - name: addressid
             description: "ID do endereço"
+      - name: store
+        description: "Descrição da tabela address"
+        columns:
+          - name: addressid
+            description: "ID do endereço"
