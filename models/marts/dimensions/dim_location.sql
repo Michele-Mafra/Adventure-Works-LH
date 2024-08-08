@@ -25,7 +25,7 @@ stateprovince as (
         stateprovince_id,
         country_code,
         state_code,
-        statename
+        state_name
     from {{ ref('stg_adw__stateprovince') }}
 )
 
@@ -35,7 +35,7 @@ select
     sp.country_code,
     a.stateprovince_id,
     sp.state_code,
-    sp.statename,
+    sp.state_name,
     a.city,
     cr.country_name
 from address a

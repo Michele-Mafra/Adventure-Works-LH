@@ -18,17 +18,17 @@ clean-targets:
 
 # Configuração de modelos
 models:
+  marts:
+    materialized: table
     marts:
-      materialized: table
-      marts:
-        +schema: marts
-      facts:
-        +schema: facts
-      dimensions:
-        +schema: dimensions
-    staging:
-      materialized: view
+      +schema: marts
+    facts:
+      +schema: facts
+    dimensions:
+      +schema: dimensions
+  staging:
+    materialized: view
 
 seeds:
-    sap_adventure_works:
-      +schema: sap_adw
+  sap_adventure_works:
+    +schema: sap_adw

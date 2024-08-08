@@ -3,7 +3,7 @@ with source as (
         stateprovinceid as stateprovince_id,
         countryregioncode as country_code,
         stateprovincecode as state_code,
-        name as statename
+        name as state_name
     from {{ source('sap_adw', 'stateprovince') }}
 )
 

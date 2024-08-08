@@ -6,11 +6,11 @@ with salesreason as (
     from {{ ref('stg_adw__salesreason') }}
 ),
 
-salesheadersalesreason as (
+salesorderheadersalesreason as (
     select
         order_id,
         reason_id
-    from {{ ref('stg_adw__salesheadersalesreason') }}
+    from {{ ref('stg_adw__salesorderheadersalesreason') }}
 )
 
 select
@@ -19,4 +19,4 @@ select
     sr.reason,
     sr.reason_type
 from salesreason sr
-join salesheadersalesreason shsr on sr.reason_id = shsr.reason_id
+join salesorderheadersalesreason shsr on sr.reason_id = shsr.reason_id

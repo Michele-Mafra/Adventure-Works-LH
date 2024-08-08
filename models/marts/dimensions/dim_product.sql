@@ -2,7 +2,7 @@ with product as (
     select
         product_id,
         product_name,
-        product_category_id
+        product_subcategory_id
     from {{ ref('stg_adw__product') }}
 ),
 
@@ -17,16 +17,16 @@ category as (
     select
         category_id,
         category_name
-    from {{ ref('stg_adw__category') }}
+    from {{ ref('stg_adw__productcategory') }}
 )
 
 select
     p.product_id,
     p.product_name,
-    p.product_category_id as subcategory_id,
+    p.product_subcategory_id as subcategory_id,
     sc.subcategory_name,
     c.category_id,
     c.category_name
 from product p
-left join subcategory sc on p.product_category_id = sc.subcategory_id
+left join subcategory sc on p.product_subcategory_id = sc.subcategory_id
 left join category c on sc.subcategory_id = c.category_id

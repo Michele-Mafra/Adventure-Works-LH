@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: dim_customer
+    description: "Descrição da sua dimensão"
+    columns:
+      - name: id
+        description: "Identificador único para a dimensão"
+      - name: nome
+        description: "Nome da entidade na dimensão"
+      - name: data_criacao
+        description: "Data em que a entidade foi criada"
