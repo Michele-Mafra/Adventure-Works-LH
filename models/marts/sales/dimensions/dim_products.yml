@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: dim_product
+    description: 'Product dimension, with products categories and subcategories'
+    columns:
+      - name: id
+        description: "Identificador único para a dimensão"
+      - name: nome
+        description: "Nome da entidade na dimensão"
+      - name: data_criacao
+        description: "Data em que a entidade foi criada"

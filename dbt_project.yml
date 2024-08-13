@@ -1,4 +1,4 @@
-name: "desafiolh"
+name: "desafiolh_rafaelabertuol"
 version: "1.0.0"
 config-version: 2
 profile: "default"
@@ -18,8 +18,9 @@ clean-targets:
 
 # Configuração de modelos
 models:
+  desafiolh_rafaelabertuol:
   marts:
-    materialized: table
+    +materialized: table
     marts:
       +schema: marts
     facts:
@@ -27,7 +28,7 @@ models:
     dimensions:
       +schema: dimensions
   staging:
-    materialized: view
+    +materialized: view
 
 seeds:
   sap_adventure_works:
