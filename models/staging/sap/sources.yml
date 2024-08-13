@@ -21,7 +21,6 @@ sources:
             tests:
               - unique
               - not_null
-
       - name: businessentityaddress
         description: "Cross-reference table mapping customers, vendors, and employees to their addresses"
         columns:
@@ -75,7 +74,6 @@ sources:
             description: "Foreign key to the creditcard table"
             tests:
               - not_null
-
       - name: product
         description: "Products sold or used in the manufacturing of sold products"
         columns:
@@ -84,7 +82,6 @@ sources:
             tests:
               - unique
               - not_null
-
       - name: productcategory
         description: "Product categorization"
         columns:
@@ -101,9 +98,6 @@ sources:
             tests:
               - unique
               - not_null
-          - name: name
-            description: "Product subcategory name"
-
       - name: salesorderdetail
         description: "Individual products associated with a specific sales order"
         columns:
@@ -139,15 +133,6 @@ sources:
             description: "Foreign key to the salesreason table"
             tests:
               - not_null
-
-      - name: salesperson
-        description: "Sales representative information"
-        columns:
-          - name: businessentityid
-            description: "Foreign key to the person table"
-            tests:
-              - not_null
-
       - name: salesreason
         description: "Lookup table of customer purchase reasons"
         columns:
@@ -155,18 +140,6 @@ sources:
             description: "Primary key for sales reasons"
             tests:
               - unique
-              - not_null
-      - name: salesterritory
-        description: "Sales territory lookup table"
-        columns:
-          - name: territoryid
-            description: "Primary key for sales territory"
-            tests:
-              - unique
-              - not_null
-          - name: countryregioncode
-            description: "Foreign key for country region table"
-            tests:
               - not_null
       - name: stateprovince
         description: "State and province lookup table"
@@ -185,9 +158,5 @@ sources:
         columns:
           - name: businessentityid
             description: "Foreign key to the person table"
-            tests:
-              - not_null
-          - name: salespersonid
-            description: "Foreign key to the sales person table"
             tests:
               - not_null

@@ -16,10 +16,7 @@ models:
           - unique
           
       - name: name
-        description: The customer name. 
+        description: The customer name
 
-      - name: storebusinessentityid
-        description: The natural key of the store
-
-      - name: store_name
-        description: The store name
+      - name: person_type
+        description: The person type (store, natural person or store contact)

@@ -29,7 +29,8 @@ with
     , transformed as (
         select
         row_number() over (order by customerid) as sk_customer -- auto-incremental surrogate key    
-            , *
+            , customerid
+            , name
             , case 
                 when personid is null and storeid is not null then 'Store'
                 when personid is not null and storeid is null then 'Natural Person'

@@ -13,10 +13,6 @@ models:
           - unique 
           - not_null 
       - name: cardtype
-        description: The card name
+        description: The card type
         tests:
           - not_null
-      - name: cardnumber
-        description: The card number
-        tests:
-          - unique

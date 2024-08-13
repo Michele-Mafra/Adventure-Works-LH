@@ -14,8 +14,7 @@ exploded_dates as (
 )
 
 select
-    row_number() over () as sk_date
-    , date
+    date
     , extract(year from date) as year
     , extract(month from date) as month
     , extract(day from date) as day

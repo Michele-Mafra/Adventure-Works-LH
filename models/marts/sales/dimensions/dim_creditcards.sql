@@ -15,7 +15,6 @@ with salesorderheader as (
         row_number() over (order by salesorderheader.creditcardid) as sk_creditcard -- auto-incremental surrogate key	
         , salesorderheader.creditcardid
         , creditcard.card_type
-        , creditcard.card_number
     from salesorderheader 
     left join creditcard on salesorderheader.creditcardid = creditcard.creditcardid
 )

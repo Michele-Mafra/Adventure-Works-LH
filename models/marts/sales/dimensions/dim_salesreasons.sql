@@ -12,6 +12,7 @@ with salesorderheadersalesreason as (
     select 
         salesorderheadersalesreason.salesorderid
         , salesreason.reason
+        , salesreason.salesreasonid
         , salesreason.reason_type
     from salesorderheadersalesreason
     left join salesreason on salesorderheadersalesreason.salesreasonid = salesreason.salesreasonid 
@@ -20,7 +21,7 @@ with salesorderheadersalesreason as (
 , transformed as (
     select
         row_number() over (order by salesorderid, reason) as sk_salesreason 
-        , salesorderid 
+        , salesreasonid
         , reason
         , reason_type
     from reasonbyorderid

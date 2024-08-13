@@ -1,86 +1,61 @@
 version: 2
 
 models:
-  - name: fct_sales
+  - name: fact_sales
+    description: "Fact table that records sales transactions, combining information from various dimensions such as products, customers, credit cards, locations, reasons, and dates"
     columns:
       - name: salesorderid
-        description: The primary key of the sale
+        description: "The unique identifier of the sales order"
         tests:
+          - unique
           - not_null
-      
+
       - name: fk_product
-        description: The foreign key of the product
+        description: "Foreign key reference to the product dimension"
         tests:
           - not_null
 
       - name: fk_customer
-        description: The foreign key of the customer
+        description: "Foreign key reference to the customer dimension"
         tests:
-          - not_null    
-      
-      - name: fk_shiptoadress
-        description: The foreign key of the shiptoadress
+          - not_null
+
+      - name: fk_shiptoaddress
+        description: "Foreign key reference to the location (ship-to address) dimension"
         tests:
-          - not_null       
-      
+          - not_null
+
       - name: fk_creditcard
-        description: The foreign key of the creditcard. If no creditcard exists, it was assumed that purchase was made in cash.
+        description: "Foreign key reference to the credit card dimension"
+        tests:
+          - not_null
 
       - name: unitprice
-        description: The unit price of the product 
+        description: "The unit price of the product at the time of the sale"
         tests:
           - not_null
 
       - name: orderqty
-        description: The quantity of the product 
+        description: "The quantity of products ordered"
         tests:
           - not_null
 
       - name: revenue
-        description: The revenue obtained by multiplying unitprice and orderqty, considering product discount
+        description: "The total revenue from the sale, including product discounts, without tax and freight"
+        tests:
+          - not_null
 
       - name: reason_name
-        description: The reason attributed to the sale
+        description: "The reason for the sale, if indicated"
         tests:
-          - not_null 
+          - not_null
 
       - name: order_status
-        description: The order's status. Considered as a degenerated dimension. No dimension table created for it.
+        description: "The status of the sales order (e.g., Completed, Pending, etc)"
         tests:
-          - not_null  
-      
-      - name: orderdate
-        description: The sale's date.
-        tests:
-          - not_null 
+          - not_null
 
-      - name: day
-        description: The sale's date.
+      - name: order_date
+        description: "The date when the sales order was placed"
         tests:
-          - not_null 
-
-      - name: day_name
-        description: The sale's date.
-        tests:
-          - not_null 
-
-      - name: month
-        description: The sale's date.
-        tests:
-          - not_null 
-
-      - name: month_name
-        description: The sale's date.
-        tests:
-          - not_null 
-
-      - name: year
-        description: The sale's date.
-        tests:
-          - not_null 
-          
-      - name: quarter
-        description: The sale's date.
-        tests:
-          - not_null 
-
+          - not_null

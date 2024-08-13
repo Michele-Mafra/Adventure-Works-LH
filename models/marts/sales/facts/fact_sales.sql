@@ -35,27 +35,19 @@ with customers as (
 
 , dates as (
     select
-        sk_date as fk_date
-        , date
-        , day
-        , day_name
-        , month
-        , month_name
-        , year
-        , week
-        , quarter
+        date
     from {{ref('dim_dates')}}
 )
 
 , salesorderdetail AS (
     SELECT
-        stg_salesorderdetail.salesorderid,
-        products.sk_product AS fk_product,
-        stg_salesorderdetail.productid,
-        stg_salesorderdetail.orderqty,
-        stg_salesorderdetail.unitprice,
-        stg_salesorderdetail.subtotal AS revenue,
-        IFNULL(reasons.reason, 'Not indicated') AS reason_name
+        stg_salesorderdetail.salesorderid
+        , products.sk_product AS fk_product
+        , stg_salesorderdetail.productid
+        , stg_salesorderdetail.orderqty
+        , stg_salesorderdetail.unitprice
+        , stg_salesorderdetail.subtotal AS revenue
+        , IFNULL(reasons.reason, 'Not indicated') AS reason_name
     FROM {{ref('stg_sap__salesorderdetail')}} stg_salesorderdetail
     LEFT JOIN products ON stg_salesorderdetail.productid = products.productid
     LEFT JOIN reasons ON stg_salesorderdetail.salesorderid = reasons.salesorderid
@@ -63,12 +55,12 @@ with customers as (
 
 , salesorderheader AS (
     SELECT
-        salesorderid,
-        customers.sk_customer AS fk_customer,
-        creditcards.sk_creditcard AS fk_creditcard,
-        locations.sk_shiptoaddress AS fk_shiptoaddress,
-        order_status,
-        order_date
+        salesorderid
+        , customers.sk_customer AS fk_customer
+        , creditcards.sk_creditcard AS fk_creditcard
+        , locations.sk_shiptoaddress AS fk_shiptoaddress
+        , order_status
+        , order_date
     FROM {{ref('stg_sap__salesorderheader')}} stg_salesorderheader
     LEFT JOIN customers ON stg_salesorderheader.customerid = customers.customerid
     LEFT JOIN creditcards ON stg_salesorderheader.creditcardid = creditcards.creditcardid
@@ -77,24 +69,17 @@ with customers as (
 
 , final AS (
     SELECT
-        salesorderdetail.salesorderid,
-        salesorderdetail.fk_product,
-        salesorderheader.fk_customer,
-        salesorderheader.fk_shiptoaddress,
-        salesorderheader.fk_creditcard,
-        dates.fk_date, 
-        salesorderdetail.unitprice,
-        salesorderdetail.orderqty,
-        salesorderdetail.revenue, -- total revenue including product discount, without tax and freight
-        salesorderdetail.reason_name,
-        salesorderheader.order_status,
-        dates.date as order_date,
-        dates.day,
-        dates.day_name,
-        dates.month,
-        dates.month_name,
-        dates.year,
-        dates.quarter,
+        salesorderdetail.salesorderid
+        , salesorderdetail.fk_product
+        , salesorderheader.fk_customer
+        , salesorderheader.fk_shiptoaddress
+        , salesorderheader.fk_creditcard
+        , salesorderdetail.unitprice
+        , salesorderdetail.orderqty
+        , salesorderdetail.revenue -- total revenue including product discount, without tax and freight
+        , salesorderdetail.reason_name
+        , salesorderheader.order_status
+        , dates.date as order_date
     FROM salesorderdetail
     LEFT JOIN salesorderheader ON salesorderdetail.salesorderid = salesorderheader.salesorderid
     LEFT JOIN dates ON salesorderheader.order_date = dates.date 

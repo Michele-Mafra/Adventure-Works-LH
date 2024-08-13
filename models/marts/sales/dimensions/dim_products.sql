@@ -43,8 +43,6 @@ with salesorderheader as (
         , product.product_name
         , productcategory.category_name
         , productsubcategory.subcategory_name
-        , product.standardcost
-        , product.listprice
         , product.productline
         , product.style
     from salesorderdetail
