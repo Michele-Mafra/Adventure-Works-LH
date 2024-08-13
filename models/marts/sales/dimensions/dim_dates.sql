@@ -22,8 +22,6 @@ select
     , format_date('%B', date) as month_name
     , format_date('%A', date) as day_name
     , extract(quarter from date) as quarter
-    , extract(week from date) as week
-    , extract(dayofweek from date) as day_of_week
 from exploded_dates
 
 

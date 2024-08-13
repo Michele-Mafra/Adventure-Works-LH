@@ -41,8 +41,8 @@ with salesorderheader as (
         row_number() over (order by salesorderdetail.productid) as sk_product -- auto-incremental surrogate key
         , salesorderdetail.productid
         , product.product_name
-        , productsubcategory.subcategory_name
         , productcategory.category_name
+        , productsubcategory.subcategory_name
         , product.standardcost
         , product.listprice
         , product.productline

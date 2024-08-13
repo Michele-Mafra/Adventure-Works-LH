@@ -27,6 +27,8 @@ models:
       +schema: facts
     dimensions:
       +schema: dimensions
+    aggregates:
+      +schema: aggregates
   staging:
     +materialized: view
 

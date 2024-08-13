@@ -19,7 +19,8 @@ with salesorderheadersalesreason as (
 
 , transformed as (
     select
-        salesorderid
+        row_number() over (order by salesorderid, reason) as sk_salesreason 
+        , salesorderid 
         , reason
         , reason_type
     from reasonbyorderid

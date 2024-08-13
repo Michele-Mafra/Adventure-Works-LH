@@ -54,7 +54,7 @@ with customers as (
         stg_salesorderdetail.productid,
         stg_salesorderdetail.orderqty,
         stg_salesorderdetail.unitprice,
-        stg_salesorderdetail.unitprice * stg_salesorderdetail.orderqty AS revenue_wo_taxandfreight,
+        stg_salesorderdetail.subtotal AS revenue,
         IFNULL(reasons.reason, 'Not indicated') AS reason_name
     FROM {{ref('stg_sap__salesorderdetail')}} stg_salesorderdetail
     LEFT JOIN products ON stg_salesorderdetail.productid = products.productid
@@ -85,7 +85,7 @@ with customers as (
         dates.fk_date, 
         salesorderdetail.unitprice,
         salesorderdetail.orderqty,
-        salesorderdetail.revenue_wo_taxandfreight,
+        salesorderdetail.revenue, -- total revenue including product discount, without tax and freight
         salesorderdetail.reason_name,
         salesorderheader.order_status,
         dates.date as order_date,
@@ -94,10 +94,10 @@ with customers as (
         dates.month,
         dates.month_name,
         dates.year,
-        dates.quarter
+        dates.quarter,
     FROM salesorderdetail
     LEFT JOIN salesorderheader ON salesorderdetail.salesorderid = salesorderheader.salesorderid
-    LEFT JOIN dates ON salesorderheader.order_date = dates.date -- Junção com a Dimensão de Datas
+    LEFT JOIN dates ON salesorderheader.order_date = dates.date 
 )
 
 SELECT *
