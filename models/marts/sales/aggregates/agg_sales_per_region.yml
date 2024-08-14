@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: agg_location_sales
+    description: "Aggregated sales data by shipping address"
+    columns:
+      - name: country_name
+        description: "Name of the country where the product was shipped"
+        tests:
+          - not_null
+      - name: state_name
+        description: "Name of the state where the product was shipped"
+        tests:
+          - not_null
+      - name: city_name
+        description: "Name of the city where the product was shipped"
+        tests:
+          - not_null
+      - name: total_sales
+        description: "Total sales revenue for the shipping address"
+        tests:
+          - not_null
+
+      - name: total_orders
+        description: "Total number of distinct orders for the shipping address"
+        tests:
+          - not_null
+
+      - name: average_sales_per_order
+        description: "Average sales revenue per order for the shipping address"
+        tests:
+          - not_null
+
+      - name: total_customers
+        description: "Total number of distinct customers for the shipping address"
+        tests:
+          - not_null
+
+
+  

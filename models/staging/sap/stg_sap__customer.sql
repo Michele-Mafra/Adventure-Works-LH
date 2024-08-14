@@ -3,6 +3,7 @@ with source as (
     customerid 
     , personid 
     , storeid 
+    , territoryid
     from {{ source('sap_adw', 'customer') }}
 )
 

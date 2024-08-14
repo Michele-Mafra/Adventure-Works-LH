@@ -5,7 +5,7 @@ with source as (
         , productid 
         , orderqty 
         , unitprice 
-        , unitpricediscount 
+        , unitpricediscount as discount
         , (unitprice * (1 - unitpricediscount) * orderqty) as revenue
     from {{ source('sap_adw', 'salesorderdetail') }}
 )

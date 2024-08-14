@@ -3,36 +3,36 @@ with customers as (
         sk_customer
         , customerid
     from {{ref('dim_customers')}} 
-)
+),
 
-, creditcards as (
+creditcards as (
     select
         sk_creditcard
         , creditcardid
     from {{ref('dim_creditcards')}}
-)
+),
 
-, locations as (
+locations as (
     select
         sk_shiptoaddress
         , shiptoaddressid
     from {{ref('dim_locations')}}
-)
+),
 
-, products as (
+products as (
     select
         sk_product
         , productid
     from {{ref('dim_products')}}
-)
+),
 
-, dates as (
+dates as (
     select
         date
     from {{ref('dim_dates')}}
-)
+),
 
-, salesorderdetail AS (
+salesorderdetail AS (
     SELECT
         stg_salesorderdetail.salesorderid
         , products.sk_product AS fk_product
@@ -42,14 +42,15 @@ with customers as (
         , stg_salesorderdetail.unitprice
     FROM {{ref('stg_sap__salesorderdetail')}} stg_salesorderdetail
     LEFT JOIN products ON stg_salesorderdetail.productid = products.productid
-)
+),
 
-, salesorderheader AS (
+salesorderheader AS (
     SELECT
         salesorderid
         , customers.sk_customer AS fk_customer
         , creditcards.sk_creditcard AS fk_creditcard
         , locations.sk_shiptoaddress AS fk_shiptoaddress
+        , stg_salesorderheader.salespersonid -- Supondo que essa seja a chave para relacionar com o vendedor
         , order_status
         , order_date
     FROM {{ref('stg_sap__salesorderheader')}} stg_salesorderheader
@@ -65,9 +66,10 @@ with customers as (
         , salesorderheader.fk_customer
         , salesorderheader.fk_shiptoaddress
         , salesorderheader.fk_creditcard
+        , salesorderheader.salespersonid AS fk_salesperson -- Nova chave estrangeira para vendedor
         , salesorderdetail.unitprice
         , salesorderdetail.orderqty
-        , salesorderdetail.revenue -- total value including product discount, without tax and freight
+        , salesorderdetail.revenue -- Valor total, incluindo desconto do produto, sem imposto e frete
         , salesorderheader.order_status
         , dates.date as order_date
     FROM salesorderdetail

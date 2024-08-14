@@ -43,7 +43,6 @@ with salesorderheader as (
         , product.product_name
         , productcategory.category_name
         , productsubcategory.subcategory_name
-        , product.productline
         , product.style
     from salesorderdetail
     left join product on salesorderdetail.productid = product.fk_product

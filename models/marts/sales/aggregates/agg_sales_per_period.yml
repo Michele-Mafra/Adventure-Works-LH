@@ -1,0 +1,54 @@
+version: 2
+
+models:
+  - name: agg_sales_per_period  
+    description: "Agregação de vendas por data, incluindo total de vendas, total de pedidos, ticket médio e média de itens por pedido."
+
+    columns:
+      - name: date
+        description: "The order date"
+        tests:
+          - not_null
+
+      - name: year
+        description: "The year of the order"
+        tests:
+          - not_null
+
+      - name: quarter
+        description: "The order by quarter of the year"
+        tests:
+          - not_null
+
+      - name: month
+        description: "The order month"
+        tests:
+          - not_null
+
+      - name: day
+        description: "The order day"
+        tests:
+          - not_null
+
+      - name: total_sales
+        description: "Sum of sales amount for the specific date"
+        tests:
+          - not_null
+
+      - name: total_orders
+        description: "Sum of orders made in a specific date"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('fact_sales')
+              field: order_date
+
+      - name: average_ticket
+        description: "The average sale amount per order per date"
+        tests:
+          - not_null
+
+      - name: average_items_per_order
+        description: "Average itens per order per date"
+        tests:
+          - not_null

@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: agg_salesperson_performance
+    description: "Aggregated sales performance data by salesperson and year"
+    columns:
+      - name: salesperson_id
+        description: "Identifier for the salesperson responsible for the sales"
+        tests:
+          - not_null
+      - name: order_year
+        description: "Year when the order was placed"
+        tests:
+          - not_null
+      - name: total_sales
+        description: "Total sales revenue attributed to the salesperson for the given year"
+        tests:
+          - not_null
+
+      - name: total_orders
+        description: "Total number of distinct orders attributed to the salesperson for the given year"
+        tests:
+          - not_null
+
+      - name: average_sales_per_order
+        description: "Average revenue per order attributed to the salesperson for the given year"
+        tests:
+          - not_null
+
+
+ 

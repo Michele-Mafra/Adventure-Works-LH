@@ -1,11 +1,10 @@
 with source as (
     select
         productid 
-        , name as product_name
-        , productnumber
-        , standardcost
-        , listprice
         , productsubcategoryid 
+        , name as product_name
+        , color as productcolor
+        , listprice
         , case
             when productline = 'R' then 'Road'
             when productline = 'M' then 'Mountain'

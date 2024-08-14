@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: agg_product_sales
+    description: "Aggregated sales data by product"
+    columns:
+      - name: sk_product
+        description: "Surrogate key for the product"
+        tests:
+          - not_null
+          - unique
+      - name: product_name
+        description: "Name of the product"
+        tests:
+          - not_null
+      - name: category_name
+        description: "Category name of the product"
+        tests:
+          - not_null
+      - name: subcategory_name
+        description: "Subcategory name of the product"
+        tests:
+          - not_null
+      - name: total_sales
+        description: "Total sales revenue for the product"
+        tests:
+          - not_null
+
+      - name: total_orders
+        description: "Total number of distinct orders for the product"
+        tests:
+          - not_null
+
+      - name: total_quantity_sold
+        description: "Total quantity of the product sold"
+        tests:
+          - not_null
+
+      - name: average_unit_price
+        description: "Average unit price of the product"
+        tests:
+          - not_null
+

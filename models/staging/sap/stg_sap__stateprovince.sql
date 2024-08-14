@@ -1,6 +1,7 @@
 with source as (
     select
-        stateprovinceid 
+        stateprovinceid
+        , territoryid 
         , countryregioncode 
         , stateprovincecode as state_code
         , name as state_name

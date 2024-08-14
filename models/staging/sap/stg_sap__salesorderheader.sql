@@ -3,6 +3,7 @@ WITH source AS (
         salesorderid,
         customerid,
         creditcardid,
+        territoryid,
         salespersonid,
         shiptoaddressid,
         PARSE_DATE('%Y-%m-%d', SUBSTR(orderdate, 1, 10)) AS order_date,
