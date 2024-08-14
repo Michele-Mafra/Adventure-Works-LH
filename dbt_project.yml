@@ -19,19 +19,23 @@ clean-targets:
 # Configuração de modelos
 models:
   desafiolh_rafaelabertuol:
-  marts:
-    +materialized: table
-    marts:
-      +schema: marts
-    facts:
-      +schema: facts
-    dimensions:
-      +schema: dimensions
-    aggregates:
-      +schema: aggregates
-  staging:
     +materialized: view
+    marts:
+      +materialized: table
+      sales:
+        dimensions:
+        +schema: marts
+      facts:
+        +schema: marts
+      aggregates:
+      +schema: marts
+    staging:
+      +schema: stg
+      +materialized: view
+      erp:
+        +schema:
 
 seeds:
-  sap_adventure_works:
-    +schema: sap_adw
+  desafiolh_rafaelabertuol:
+    +materialized: view
+    +schema: seeds

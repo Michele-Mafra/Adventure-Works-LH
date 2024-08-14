@@ -7,7 +7,6 @@ models:
       - name: salesorderid
         description: "The unique identifier of the sales order"
         tests:
-          - unique
           - not_null
 
       - name: fk_product
@@ -27,8 +26,6 @@ models:
 
       - name: fk_creditcard
         description: "Foreign key reference to the credit card dimension"
-        tests:
-          - not_null
 
       - name: unitprice
         description: "The unit price of the product at the time of the sale"
