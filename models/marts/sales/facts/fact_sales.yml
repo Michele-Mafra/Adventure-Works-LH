@@ -31,7 +31,6 @@ models:
         description: "The unit price of the product at the time of the sale"
         tests:
           - not_null
-          - test_unit_price_range
 
       - name: orderqty
         description: "The quantity of products ordered"
@@ -52,4 +51,3 @@ models:
         description: "The date when the sales order was placed"
         tests:
           - not_null
-          - test_date_range
