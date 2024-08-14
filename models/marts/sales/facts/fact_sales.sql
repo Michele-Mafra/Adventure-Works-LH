@@ -19,13 +19,6 @@ with customers as (
     from {{ref('dim_locations')}}
 )
 
-, reasons as (
-    select
-        salesorderid
-        , reason
-    from {{ref('dim_salesreasons')}}
-)
-
 , products as (
     select
         sk_product
@@ -45,12 +38,10 @@ with customers as (
         , products.sk_product AS fk_product
         , stg_salesorderdetail.productid
         , stg_salesorderdetail.orderqty
+        , stg_salesorderdetail.revenue
         , stg_salesorderdetail.unitprice
-        , stg_salesorderdetail.subtotal AS revenue
-        , IFNULL(reasons.reason, 'Not indicated') AS reason_name
     FROM {{ref('stg_sap__salesorderdetail')}} stg_salesorderdetail
     LEFT JOIN products ON stg_salesorderdetail.productid = products.productid
-    LEFT JOIN reasons ON stg_salesorderdetail.salesorderid = reasons.salesorderid
 )
 
 , salesorderheader AS (
@@ -76,8 +67,7 @@ with customers as (
         , salesorderheader.fk_creditcard
         , salesorderdetail.unitprice
         , salesorderdetail.orderqty
-        , salesorderdetail.revenue -- total revenue including product discount, without tax and freight
-        , salesorderdetail.reason_name
+        , salesorderdetail.revenue -- total value including product discount, without tax and freight
         , salesorderheader.order_status
         , dates.date as order_date
     FROM salesorderdetail

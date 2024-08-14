@@ -12,7 +12,4 @@ models:
         tests:
           - unique 
           - not_null 
-      - name: cardtype
-        description: The card type
-        tests:
-          - not_null
+

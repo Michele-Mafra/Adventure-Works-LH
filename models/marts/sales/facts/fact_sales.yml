@@ -34,6 +34,7 @@ models:
         description: "The unit price of the product at the time of the sale"
         tests:
           - not_null
+          - test_unit_price_range
 
       - name: orderqty
         description: "The quantity of products ordered"
@@ -42,11 +43,6 @@ models:
 
       - name: revenue
         description: "The total revenue from the sale, including product discounts, without tax and freight"
-        tests:
-          - not_null
-
-      - name: reason_name
-        description: "The reason for the sale, if indicated"
         tests:
           - not_null
 
@@ -59,3 +55,4 @@ models:
         description: "The date when the sales order was placed"
         tests:
           - not_null
+          - test_date_range
