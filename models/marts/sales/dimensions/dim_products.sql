@@ -13,7 +13,6 @@ with salesorderheader as (
     select
         productid as fk_product
         , product_name
-        , standardcost
         , listprice
         , productsubcategoryid as fk_productsubcategory
         , productline
@@ -44,6 +43,7 @@ with salesorderheader as (
         , productcategory.category_name
         , productsubcategory.subcategory_name
         , product.style
+        , product.listprice as price
     from salesorderdetail
     left join product on salesorderdetail.productid = product.fk_product
     left join productsubcategory on product.fk_productsubcategory = productsubcategory.pk_productsubcategory

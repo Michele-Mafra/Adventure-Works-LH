@@ -36,6 +36,7 @@ with
                 when personid is not null and storeid is null then 'Natural Person'
                 when personid is not null and storeid is not null then 'Store Contact'
                 end as person_type
+            , store_name
         from joined
     )
 

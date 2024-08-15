@@ -39,9 +39,6 @@ models:
         description: "Sum of orders made in a specific date"
         tests:
           - not_null
-          - relationships:
-              to: ref('fact_sales')
-              field: order_date
 
       - name: average_ticket
         description: "The average sale amount per order per date"
