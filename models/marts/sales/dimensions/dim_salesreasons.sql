@@ -1,30 +1,28 @@
-with salesorderheadersalesreason as (
+with stg_salesorderheadersalesreason as (
     select *
     from {{ref('stg_sap__salesorderheadersalesreason')}}
 )
 
-, salesreason as (
+, stg_salesreason as (
     select *
     from {{ref('stg_sap__salesreason')}}
 )
 
 , reasonbyorderid as (
     select 
-        salesorderheadersalesreason.salesorderid
-        , salesreason.reason
-        , salesreason.salesreasonid
-        , salesreason.reason_type
-    from salesorderheadersalesreason
-    left join salesreason on salesorderheadersalesreason.salesreasonid = salesreason.salesreasonid 
+        stg_salesorderheadersalesreason.salesorderid
+        , stg_salesreason.reason 
+    from stg_salesorderheadersalesreason
+    left join stg_salesreason on stg_salesorderheadersalesreason.salesreasonid = stg_salesreason.salesreasonid 
 )
 
 , transformed as (
     select
-        row_number() over (order by salesorderid, reason) as sk_salesreason 
-        , salesreasonid
-        , reason
-        , reason_type
+        salesorderid
+        -- function used to aggregate in one row any multiple reasons attributed to a single salesorderid
+        , string_agg(reason, ', ') as reason_name
     from reasonbyorderid
+    group by salesorderid
 )
 
 select *

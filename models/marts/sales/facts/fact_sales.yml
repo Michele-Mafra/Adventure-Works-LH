@@ -47,6 +47,11 @@ models:
         tests:
           - not_null
 
+      - name: reason_name
+        description: "The name and type of the reason of the sale"
+        tests:
+          - not_null
+
       - name: order_date
         description: "The date when the sales order was placed"
         tests:
