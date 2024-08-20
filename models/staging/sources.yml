@@ -21,15 +21,6 @@ sources:
           - name: city
             description: "The name of the city"
 
-      - name: businessentity
-        description: "ID that connects vendors, customers, and employees with address and contact information"
-        columns:
-          - name: businessentityid
-            description: "Primary key for the business entity"
-            tests:
-              - unique
-              - not_null
-
       - name: businessentityaddress
         description: "Cross-reference table mapping customers, vendors, and employees to their addresses"
         columns:

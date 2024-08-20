@@ -14,12 +14,27 @@ models:
         tests:
           - not_null
           - unique
+      
+      - name: personid
+        description: "The natural key of the person"
+        tests:
+          - not_null
+          - unique
           
       - name: name
         description: "The customer name"
 
-      - name: person_type
-        description: "The person type (store, natural person or store contact)"
-        
+      - name: creditcardid
+        description: "The natural key of the credit card"
+      
+      - name: card_type
+        description: "The type of credit card"
+
+      - name: storeid
+        description: "The natural key of the store"
+
       - name: store_name
         description: "The name of the store, if person type is in store"
+
+      - name: person_type
+        description: "The person type (store, natural person or store contact)"

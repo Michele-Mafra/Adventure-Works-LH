@@ -35,7 +35,8 @@ with
 
     , reasons as (
         select
-            salesorderid
+            sk_salesreason
+            , salesorderid
             , reason_and_type
         from {{ref('dim_salesreasons')}}
     )
@@ -49,6 +50,7 @@ with
             , stg_salesorderdetail.revenue
             , stg_salesorderdetail.unitprice
             , ifnull(reasons.reason_and_type,'Not indicated') as reason_and_type
+            , reasons.sk_salesreason
         from {{ref('stg_sap__salesorderdetail')}} stg_salesorderdetail
         left join products on stg_salesorderdetail.productid = products.productid
         left join reasons on stg_salesorderdetail.salesorderid = reasons.salesorderid
@@ -71,12 +73,19 @@ with
 
     , final as (
         select
-            salesorderdetail.salesorderid
+            {{ surrogate_key(
+                'salesorderdetail.salesorderid',
+                'salesorderdetail.fk_product',
+                'salesorderheader.fk_customer',
+                'dates.date'
+            ) }} as sk_factsales
             , salesorderdetail.fk_product
             , salesorderheader.fk_customer
             , salesorderheader.fk_shiptoaddress
             , salesorderheader.fk_creditcard
-            , salesorderheader.salespersonid as fk_salesperson -- foreign key for salesperson
+            , salesorderheader.salespersonid as fk_salesperson 
+            , salesorderdetail.sk_salesreason as fk_salesreason
+            , salesorderdetail.salesorderid
             , salesorderdetail.unitprice
             , salesorderdetail.orderqty
             , salesorderdetail.revenue -- Total value of the sale, including product discount, without taxes and freight

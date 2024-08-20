@@ -4,10 +4,11 @@ models:
   - name: fact_sales
     description: "Fact table that records sales transactions, combining information from various dimensions such as products, customers, credit cards, locations, reasons, and dates"
     columns:
-      - name: salesorderid
-        description: "The unique identifier of the sales order"
+      - name: sk_factsales
+        description: "The surrogate key of the fact sales table"
         tests:
           - not_null
+          - unique
 
       - name: fk_product
         description: "Foreign key reference to the product dimension"
@@ -26,6 +27,17 @@ models:
 
       - name: fk_creditcard
         description: "Foreign key reference to the credit card dimension"
+      
+      - name: fk_salesperson
+        description: "Foreign key reference to the sales person table"
+
+      - name: fk_salesreason
+        description: "Foreign key reference to the sales reason dimension"
+
+      - name: salesorderid
+        description: "The unique identifier of the sales order"
+        tests:
+          - not_null
 
       - name: unitprice
         description: "The unit price of the product at the time of the sale"
@@ -42,13 +54,13 @@ models:
         tests:
           - not_null
 
-      - name: order_status
-        description: "The status of the sales order (e.g., Completed, Pending, etc)"
+      - name: reason_and_type
+        description: "The name and type of the reason of the sale"
         tests:
           - not_null
-
-      - name: reason_name
-        description: "The name and type of the reason of the sale"
+      
+      - name: order_status
+        description: "The status of the sales order (e.g., Completed, Pending, etc)"
         tests:
           - not_null
 
@@ -56,3 +68,4 @@ models:
         description: "The date when the sales order was placed"
         tests:
           - not_null
+       
