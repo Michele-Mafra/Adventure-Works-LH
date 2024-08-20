@@ -50,7 +50,7 @@ with
             , stg_salesorderdetail.revenue
             , stg_salesorderdetail.unitprice
             , ifnull(reasons.reason_and_type,'Not indicated') as reason_and_type
-            , reasons.sk_salesreason
+            , reasons.sk_salesreason as fk_salesreason
         from {{ref('stg_sap__salesorderdetail')}} stg_salesorderdetail
         left join products on stg_salesorderdetail.productid = products.productid
         left join reasons on stg_salesorderdetail.salesorderid = reasons.salesorderid
@@ -62,7 +62,7 @@ with
             , customers.sk_customer as fk_customer
             , creditcards.sk_creditcard as fk_creditcard
             , locations.sk_shiptoaddress as fk_shiptoaddress
-            , stg_salesorderheader.salespersonid 
+            , stg_salesorderheader.salespersonid as fk_salesperson
             , order_status
             , order_date
         from {{ref('stg_sap__salesorderheader')}} stg_salesorderheader
@@ -77,14 +77,17 @@ with
                 'salesorderdetail.salesorderid',
                 'salesorderdetail.fk_product',
                 'salesorderheader.fk_customer',
+                'salesorderdetail.orderqty',
+                'salesorderdetail.unitprice',
+                'salesorderdetail.fk_salesreason',
                 'dates.date'
-            ) }} as sk_factsales
+            ) }} as sk_factsales -- Surrogate Key
             , salesorderdetail.fk_product
             , salesorderheader.fk_customer
             , salesorderheader.fk_shiptoaddress
             , salesorderheader.fk_creditcard
-            , salesorderheader.salespersonid as fk_salesperson 
-            , salesorderdetail.sk_salesreason as fk_salesreason
+            , salesorderheader.fk_salesperson
+            , salesorderdetail.fk_salesreason 
             , salesorderdetail.salesorderid
             , salesorderdetail.unitprice
             , salesorderdetail.orderqty

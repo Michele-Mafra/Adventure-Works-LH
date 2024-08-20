@@ -7,6 +7,7 @@ models:
         description: "The surrogate key of the creditcard id"
         tests:
           - not_null   
+          - unique
       - name: creditcardid
         description: "The natural key of the creditcard"
         tests:

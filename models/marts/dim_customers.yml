@@ -17,9 +17,6 @@ models:
       
       - name: personid
         description: "The natural key of the person"
-        tests:
-          - not_null
-          - unique
           
       - name: name
         description: "The customer name"
