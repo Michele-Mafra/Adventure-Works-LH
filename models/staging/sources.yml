@@ -1,0 +1,320 @@
+version: 2
+
+sources:
+  - name: sap_adw
+    description: "Sources from Adventure Works SAP system"
+    schema: sap_adw
+    tables:
+
+      - name: address
+        description: "Address information for customers, employees, and vendors"
+        columns:
+          - name: addressid
+            description: "Primary key for address records"
+            tests:
+              - unique
+              - not_null
+          - name: stateprovinceid
+            description: "The ID for state/province"
+            tests:
+              - not_null
+          - name: city
+            description: "The name of the city"
+
+      - name: businessentity
+        description: "ID that connects vendors, customers, and employees with address and contact information"
+        columns:
+          - name: businessentityid
+            description: "Primary key for the business entity"
+            tests:
+              - unique
+              - not_null
+
+      - name: businessentityaddress
+        description: "Cross-reference table mapping customers, vendors, and employees to their addresses"
+        columns:
+          - name: businessentityid
+            description: "Foreign key to the businessentity table"
+            tests:
+              - not_null
+          - name: addressid
+            description: "Foreign key to the address table"
+            tests:
+              - not_null
+          - name: addresstypeid
+            description: "The ID for the address type, as in billing, home, main office, primary, shipping, archive)"
+
+      - name: countryregion
+        description: "Lookup table containing codes for countries and regions"
+        columns:
+          - name: countryregioncode
+            description: "Primary key for country or region codes"
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: "The name of the country"
+
+      - name: creditcard
+        description: "Credit card information"
+        columns:
+          - name: creditcardid
+            description: "Primary key for credit card records"
+            tests:
+              - unique
+              - not_null
+          - name: cardtype
+            description: "The type of credit card"
+
+      - name: customer
+        description: "Customer information"
+        columns:
+          - name: customerid
+            description: "Primary key for customer records"
+            tests:
+              - unique
+              - not_null
+          - name: personid
+            description: "The id of the person"
+          - name: storeid
+            description: "The store ID"
+          - name: territoryid
+            description: "The id of the territory"
+
+
+      - name: person
+        description: "Human beings involved with AdventureWorks: employees, customer contacts, and vendor contacts"
+        columns:
+          - name: businessentityid
+            description: "Foreign key to the businessentity table"
+            tests:
+              - not_null
+          - name: name
+            description: "The name of the person"
+          - name: persontype
+            description: "The person type, as in store, retail customer, sales person, employee, vendor, general contact"
+
+      - name: personcreditcard
+        description: "Cross-reference table mapping people to their credit card information in the CreditCard table"
+        columns:
+          - name: businessentityid
+            description: "Foreign key to the person table"
+            tests:
+              - not_null
+          - name: creditcardid
+            description: "Foreign key to the creditcard table"
+            tests:
+              - not_null
+
+      - name: product
+        description: "Products sold or used in the manufacturing of sold products"
+        columns:
+          - name: productid
+            description: "Primary key for product records"
+            tests:
+              - unique
+              - not_null
+          - name: productsubcategoryid
+            description: "Foreign key to the subcategory table"
+          - name: name
+            description: "Name of the product"
+          - name: color
+            description: "Product color"
+          - name: listprice
+            description: "Product price"
+          - name: productline
+            description: "The line of the product, as in road, mountain, touring or standard"
+          - name: style
+            description: "The description of the product, as in womens, mens or universal"
+
+      - name: productcategory
+        description: "Product categorization"
+        columns:
+          - name: productcategoryid
+            description: "Primary key for product categories"
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: "Product category name"
+
+      - name: productsubcategory
+        description: "Product subcategories"
+        columns:
+          - name: productsubcategoryid
+            description: "Primary key for product subcategories"
+            tests:
+              - unique
+              - not_null
+          - name: productcategoryid
+            description: "Foreign key to the product category table"
+          - name: name
+            description: "Product subcategory name"
+
+      - name: salesorderdetail
+        description: "Individual products associated with a specific sales order"
+        columns:
+          - name: salesorderdetailid
+            description: "Primary key for sales order detail records"
+            tests:
+              - unique
+              - not_null
+          - name: salesorderid
+            description: "Foreign key to the salesorderheader table"
+            tests:
+              - not_null
+          - name: productid
+            description: "Foreign key to the product table"
+            tests:
+              - not_null
+          - name: orderqty
+            description: "Quantity ordered per product"
+            tests:
+              - not_null
+          - name: unitprice
+            description: "Selling price of a single product"
+            tests:
+              - not_null
+          - name: unitpricediscount
+            description: "Discount amount"
+            
+      - name: salesorderheader
+        description: "General sales order information"
+        columns:
+          - name: salesorderid
+            description: "Primary key for sales order records"
+            tests:
+              - unique
+              - not_null
+          - name: creditcardid
+            description: "Foreign key to the credit card table"
+          - name: territoryid
+            description: "Foreign key to the territory table"
+          - name: salespersonid
+            description: "Foreign key to the sales person table"
+          - name: shiptoaddressid
+            description: "Foreign key to the address table"
+          - name: orderdate
+            description: "Dates the sales order was created"
+            tests:
+              - not_null
+          - name: duedate
+            description: "Date the order is due to the customer"
+            tests:
+              - not_null
+          - name: shipdate
+            description: "Date the order was shipped to the customer"
+            tests:
+              - not_null
+          - name: orderstatus
+            description: "Order current status: in process, approved, backordered, rejected, shipped, cancelled"
+          - name: onlineorderflag
+            description: "A flag that defines if the orde was placed by sales person or placed online by customer"
+            tests:
+              - not_null
+          - name: subtotal
+            description: "Sales subtotal. Computed as sum of line total for the appropriate sales order ID"
+            tests:
+              - not_null
+          - name: taxamt
+            description: "Tax amount"
+          - name: freight
+            description: "Shipping cost"
+          - name: totaldue
+            description: "Total due from customer. Computed as subtotal + tax amount + freight"
+            tests:
+              - not_null
+
+      - name: salesorderheadersalesreason
+        description: "Cross-reference table mapping sales orders to sales reason codes"
+        columns:
+          - name: salesorderid
+            description: "Foreign key to the salesorderheader table"
+            tests:
+              - not_null
+          - name: salesreasonid
+            description: "Foreign key to the salesreason table"
+            tests:
+              - not_null
+
+      - name: salesperson
+        description: Table with information about salesperson sales statistics.
+        columns:
+          - name: businessentityid
+            tests:
+              - unique
+              - not_null
+          - name: salesquota
+            description: "Projected yearly sales"
+          - name: bonus
+            description: "Bonus due if quota is met"
+          - name: commissionpct
+            description: "Commission percent received per sale"
+          - name: salesytd
+            description: "Sales total year to date"
+          - name: saleslastyear
+            description: "Sales total or previous year"
+
+      - name: salesreason
+        description: "Lookup table of customer purchase reasons"
+        columns:
+          - name: salesreasonid
+            description: "Primary key for sales reasons"
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: "Sales reason description"
+          - name: reasontype
+            description: "Category the sales reason belongs to"
+
+      - name: salesterritory
+        description: Table with information about territory sales statistics.
+        columns:
+          - name: territoryid
+            tests:
+              - unique
+              - not_null
+          - name: name
+            description: "Sales territory description"
+          - name: countryregioncode
+            description: "Foreign key to country region table"
+          - name: group
+            description: "Geographic area to which the sales territory belong"
+          - name: salesytd
+            description: "Sales in the territory year to date"
+          - name: saleslastyear
+            description: "Sales in the territory the previous year"
+
+      - name: stateprovince
+        description: "State and province lookup table"
+        columns:
+          - name: stateprovinceid
+            description: "Primary key for state or province records"
+            tests:
+              - unique
+              - not_null
+          - name: countryregioncode
+            description: "Foreign key to country region table"
+            tests:
+              - not_null
+          - name: territoryid
+            description: "Foreign key to sales territory table"
+            tests:
+              - not_null
+          - name: stateprovincecode
+            description: "Standard state or province code"
+          - name: name
+            description: "State or province description"
+
+      - name: store
+        description: "Resellers of Adventure Works products"
+        columns:
+          - name: businessentityid
+            description: "Foreign key to the person table"
+            tests:
+              - not_null
+          - name: salespersonid
+            description: "Foreign key to the sales person table"
+          - name: name
+            description: "Name of the store"

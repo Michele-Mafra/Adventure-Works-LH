@@ -22,20 +22,13 @@ models:
     +materialized: view
     marts:
       +materialized: table
-      sales:
-        dimensions:
-        +schema: marts
-      facts:
-        +schema: marts
-      aggregates:
-      +schema: marts
     staging:
-      +schema: stg
-      +materialized: view
-      erp:
-        +schema:
+        +schema: stg
+        +materialized: view
 
 seeds:
   desafiolh_rafaelabertuol:
-    +materialized: seed
     +schema: sap_adw
+    +persist_docs:
+      relation: true
+      columns: true

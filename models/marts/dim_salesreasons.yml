@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: dim_salesreason
+    description: "Sales reason dimension that includes details about reasons associated with sales orders"
+    columns:
+      - name: sk_salesreason
+        description: "Surrogate key for the sales reason, auto-incremented and unique"
+        tests:
+          - unique
+          - not_null
+
+      - name: salesorderid
+        description: "The ID of the sales order"
+        tests:
+          - not_null
+
+      - name: salesreasonid
+        description: "The ID of the sale reason"
+        tests:
+          - not_null
+
+      - name: reason_and_type
+        description: "The aggregated description of the sales reason name and type"
+        tests:
+          - not_null
+
