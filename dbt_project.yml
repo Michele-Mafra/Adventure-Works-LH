@@ -21,10 +21,10 @@ models:
   desafiolh_rafaelabertuol:
     +materialized: view
     marts:
+      +schema: marts
       +materialized: table
     staging:
-        +schema: stg
-        +materialized: view
+      +schema: stg
 
 seeds:
   desafiolh_rafaelabertuol:
