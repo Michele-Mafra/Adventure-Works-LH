@@ -20,8 +20,13 @@ models:
         tests:
           - not_null
 
-      - name: reason_and_type
-        description: "The aggregated description of the sales reason name and type"
+      - name: reason
+        description: "The name of the reason"
+        tests:
+          - not_null
+
+      - name: reason_type
+        description: "The type of the reason"
         tests:
           - not_null
 

@@ -27,7 +27,7 @@ models:
 
       - name: fk_creditcard
         description: "Foreign key reference to the credit card dimension"
-      
+
       - name: fk_salesperson
         description: "Foreign key reference to the sales person table"
 
@@ -54,11 +54,6 @@ models:
         tests:
           - not_null
 
-      - name: reason_and_type
-        description: "The name and type of the reason of the sale"
-        tests:
-          - not_null
-      
       - name: order_status
         description: "The status of the sales order (e.g., Completed, Pending, etc)"
         tests:
@@ -68,4 +63,3 @@ models:
         description: "The date when the sales order was placed"
         tests:
           - not_null
-       

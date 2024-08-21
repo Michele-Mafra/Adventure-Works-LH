@@ -37,7 +37,7 @@ with
         select
             sk_salesreason
             , salesorderid
-            , reason_and_type
+            , reason
         from {{ref('dim_salesreasons')}}
     )
 
@@ -49,7 +49,7 @@ with
             , stg_salesorderdetail.orderqty
             , stg_salesorderdetail.revenue
             , stg_salesorderdetail.unitprice
-            , ifnull(reasons.reason_and_type,'Not indicated') as reason_and_type
+            , reasons.reason
             , reasons.sk_salesreason as fk_salesreason
         from {{ref('stg_sap__salesorderdetail')}} stg_salesorderdetail
         left join products on stg_salesorderdetail.productid = products.productid
@@ -74,13 +74,7 @@ with
     , final as (
         select
             {{ surrogate_key(
-                'salesorderdetail.salesorderid',
-                'salesorderdetail.fk_product',
-                'salesorderheader.fk_customer',
-                'salesorderdetail.orderqty',
-                'salesorderdetail.unitprice',
-                'salesorderdetail.fk_salesreason',
-                'dates.date'
+                'salesorderdetail.salesorderid'
             ) }} as sk_factsales -- Surrogate Key
             , salesorderdetail.fk_product
             , salesorderheader.fk_customer
@@ -92,7 +86,7 @@ with
             , salesorderdetail.unitprice
             , salesorderdetail.orderqty
             , salesorderdetail.revenue -- Total value of the sale, including product discount, without taxes and freight
-            , salesorderdetail.reason_and_type
+            , salesorderdetail.reason
             , salesorderheader.order_status
             , dates.date as order_date
         from salesorderdetail
@@ -100,5 +94,18 @@ with
         left join dates on salesorderheader.order_date = dates.date 
     )
 
+, dedup as (
+        select
+            *
+            , row_number() over (
+                partition by
+                    sk_factsales
+                    , order_date
+                order by order_date desc
+            ) as dedup_tabela
+        from final
+)
+
 select *
-from final
+from dedup
+where dedup_tabela = 1

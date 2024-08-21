@@ -15,7 +15,8 @@ with
             ]) }} as sk_salesreason
             , salesorderheadersalesreason.salesorderid
             , salesorderheadersalesreason.salesreasonid
-            , CONCAT(salesreason.reason, ' - ', salesreason.reason_type) AS reason_and_type
+            , salesreason.reason
+            , salesreason.reason_type
         from salesorderheadersalesreason
         left join salesreason on salesorderheadersalesreason.salesreasonid = salesreason.salesreasonid
     )
