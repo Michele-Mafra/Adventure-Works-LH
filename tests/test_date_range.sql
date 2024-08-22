@@ -13,4 +13,3 @@ group by
     fs.order_date
 order by 
     fs.order_date
-

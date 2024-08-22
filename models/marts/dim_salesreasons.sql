@@ -11,7 +11,6 @@ with
         select
             {{ surrogate_key([
                 'salesorderheadersalesreason.salesorderid'
-                , 'salesorderheadersalesreason.salesreasonid'
             ]) }} as sk_salesreason
             , salesorderheadersalesreason.salesorderid
             , salesorderheadersalesreason.salesreasonid

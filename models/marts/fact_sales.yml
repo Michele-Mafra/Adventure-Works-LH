@@ -28,8 +28,8 @@ models:
       - name: fk_creditcard
         description: "Foreign key reference to the credit card dimension"
 
-      - name: fk_salesperson
-        description: "Foreign key reference to the sales person table"
+      - name: salespersonid
+        description: "The ID of the sales person table"
 
       - name: fk_salesreason
         description: "Foreign key reference to the sales reason dimension"

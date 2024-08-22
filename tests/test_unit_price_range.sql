@@ -6,4 +6,3 @@ where
     unitprice < 0
 having
     count(*) > 0
-

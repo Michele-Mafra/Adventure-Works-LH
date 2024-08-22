@@ -9,9 +9,9 @@ models:
         tests:
           - unique
           - not_null
-
+      
       - name: productid
-        description: "The unique identifier of the product"
+        description: "Primary key for the product"
         tests:
           - unique
           - not_null

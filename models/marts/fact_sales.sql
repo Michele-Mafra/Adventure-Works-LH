@@ -40,14 +40,12 @@ with
             , row_number() over (
                 partition by
                     salesorderid
-                    , salesreasonid
-                order by salesreasonid desc
             ) as dedup_tabela
         from {{ref('dim_salesreasons')}}
     )
 
-    /* for each orderid we can have more than one reason for the sale. The dedup was included to create the surrogate key for the fact table from the salesorderid */ 
-    
+    /* for each orderid we can have more than one reason for the sale. The dedup was included to create the surrogate key for the fact table from the sales order id */ 
+
     , dedup as (  
         select *
         from reasons
@@ -67,14 +65,15 @@ with
     , final as (
         select
             {{ surrogate_key(
-                'salesorderdetail.salesorderid'
+                'salesorderdetail.salesorderdetailid'
             ) }} as sk_factsales -- Surrogate Key
             , products.fk_product
             , customers.fk_customer
             , locations.fk_shiptoaddress
             , creditcards.fk_creditcard
-            , salesorderheader.salespersonid
             , dedup.fk_salesreason 
+            , salesorderheader.salespersonid
+            , salesorderdetail.salesorderdetailid
             , salesorderdetail.salesorderid
             , salesorderdetail.unitprice
             , salesorderdetail.orderqty
@@ -85,7 +84,7 @@ with
         left join salesorderheader on salesorderdetail.salesorderid = salesorderheader.salesorderid
         left join dates on salesorderheader.order_date = dates.date 
         left join products on salesorderdetail.productid = products.productid
-        left join dedup on salesorderdetail.salesorderid = dedup.salesorderid
+        left join dedup on salesorderdetail.salesorderid = dedup.salesorderid 
         left join customers on salesorderheader.customerid = customers.customerid
         left join creditcards on salesorderheader.creditcardid = creditcards.creditcardid
         left join locations on salesorderheader.shiptoaddressid = locations.shiptoaddressid
