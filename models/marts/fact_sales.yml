@@ -28,11 +28,16 @@ models:
       - name: fk_creditcard
         description: "Foreign key reference to the credit card dimension"
 
-      - name: salespersonid
-        description: "The ID of the sales person table"
-
       - name: fk_salesreason
         description: "Foreign key reference to the sales reason dimension"
+
+      - name: salespersonid
+        description: "The ID of the sales person table"
+      
+      - name: salesorderdetailid
+        description: "The unique identifier of the sales order detail"
+        tests:
+          - not_null
 
       - name: salesorderid
         description: "The unique identifier of the sales order"
@@ -49,8 +54,8 @@ models:
         tests:
           - not_null
 
-      - name: revenue
-        description: "The total revenue from the sale, including product discounts, without tax and freight"
+      - name: subtotal
+        description: "The total of sale, including product discounts, without tax and freight"
         tests:
           - not_null
 

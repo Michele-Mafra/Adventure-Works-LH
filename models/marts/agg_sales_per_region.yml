@@ -1,40 +1,27 @@
 version: 2
 
 models:
-  - name: agg_location_sales
-    description: "Aggregated sales data by shipping address"
-    columns:
-      - name: country_name
-        description: "Name of the country where the product was shipped"
+  - name: agg_sales_per_region
+    description: "Aggregated table with information about the sales per region"
+    columns: 
+      - name: territory
+        description: "Territory name"
         tests:
+          - unique
           - not_null
-      - name: state_name
-        description: "Name of the state where the product was shipped"
-        tests:
-          - not_null
-      - name: city_name
-        description: "Name of the city where the product was shipped"
-        tests:
-          - not_null
+      - name: subtotal_2012
+        description: "Value of the total sales in 2012 per region"
+      - name: subtotal_2013
+        description: "Value of the total sales in 2013 per region"
+      - name: subtotal_2014
+        description: "Value of the total sales in 2014 per region"
       - name: total_sales
-        description: "Total sales revenue for the shipping address"
-        tests:
-          - not_null
-
-      - name: total_orders
-        description: "Total number of distinct orders for the shipping address"
-        tests:
-          - not_null
-
-      - name: average_sales_per_order
-        description: "Average sales revenue per order for the shipping address"
-        tests:
-          - not_null
-
-      - name: total_customers
-        description: "Total number of distinct customers for the shipping address"
-        tests:
-          - not_null
-
-
-  
+        description: "Total sale per region"
+      - name: orders_qty
+        description: "Total orders per region"
+      - name: avg_ticket
+        description: "Average ticket per region"
+      - name: first_sale
+        description: "Date of the first sale per region"
+      - name: last_sale
+        description: "Date of the last sale per region"

@@ -21,20 +21,6 @@ sources:
           - name: city
             description: "The name of the city"
 
-      - name: businessentityaddress
-        description: "Cross-reference table mapping customers, vendors, and employees to their addresses"
-        columns:
-          - name: businessentityid
-            description: "Foreign key to the businessentity table"
-            tests:
-              - not_null
-          - name: addressid
-            description: "Foreign key to the address table"
-            tests:
-              - not_null
-          - name: addresstypeid
-            description: "The ID for the address type, as in billing, home, main office, primary, shipping, archive)"
-
       - name: countryregion
         description: "Lookup table containing codes for countries and regions"
         columns:
@@ -72,7 +58,6 @@ sources:
           - name: territoryid
             description: "The id of the territory"
 
-
       - name: person
         description: "Human beings involved with AdventureWorks: employees, customer contacts, and vendor contacts"
         columns:
@@ -84,18 +69,6 @@ sources:
             description: "The name of the person"
           - name: persontype
             description: "The person type, as in store, retail customer, sales person, employee, vendor, general contact"
-
-      - name: personcreditcard
-        description: "Cross-reference table mapping people to their credit card information in the CreditCard table"
-        columns:
-          - name: businessentityid
-            description: "Foreign key to the person table"
-            tests:
-              - not_null
-          - name: creditcardid
-            description: "Foreign key to the creditcard table"
-            tests:
-              - not_null
 
       - name: product
         description: "Products sold or used in the manufacturing of sold products"
@@ -111,6 +84,8 @@ sources:
             description: "Name of the product"
           - name: color
             description: "Product color"
+          - name: standardcost
+            description: "Standard cost of the product"
           - name: listprice
             description: "Product price"
           - name: productline
@@ -168,6 +143,8 @@ sources:
               - not_null
           - name: unitpricediscount
             description: "Discount amount"
+          - name: subtotal
+            description: "Total value of the sale, including discounts"
             
       - name: salesorderheader
         description: "General sales order information"
@@ -177,14 +154,22 @@ sources:
             tests:
               - unique
               - not_null
+          - name: customerid
+            description: "Foreign key to the customer table"
+            tests:
+              - not_null
           - name: creditcardid
             description: "Foreign key to the credit card table"
           - name: territoryid
             description: "Foreign key to the territory table"
+            tests:
+              - not_null
           - name: salespersonid
             description: "Foreign key to the sales person table"
           - name: shiptoaddressid
             description: "Foreign key to the address table"
+            tests:
+              - not_null
           - name: orderdate
             description: "Dates the sales order was created"
             tests:
@@ -260,16 +245,17 @@ sources:
             description: "Category the sales reason belongs to"
 
       - name: salesterritory
-        description: Table with information about territory sales statistics.
+        description: "Sales territory lookup table"
         columns:
           - name: territoryid
+            description: "Primary key for salesterritory records"
             tests:
               - unique
               - not_null
           - name: name
             description: "Sales territory description"
           - name: countryregioncode
-            description: "Foreign key to country region table"
+            description: "ISO standard country or region code" 
           - name: group
             description: "Geographic area to which the sales territory belong"
           - name: salesytd
@@ -309,3 +295,4 @@ sources:
             description: "Foreign key to the sales person table"
           - name: name
             description: "Name of the store"
+              

@@ -7,7 +7,7 @@ with
             , cast(orderqty as int) as orderqty 
             , cast(unitprice as numeric) as unitprice 
             , cast(unitpricediscount as numeric) as discount
-            , (unitprice * (1 - unitpricediscount) * orderqty) as revenue
+            , (unitprice * (1 - unitpricediscount) * orderqty) subtotal
         from {{ source('sap_adw', 'salesorderdetail') }}
     )
 

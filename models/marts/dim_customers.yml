@@ -18,8 +18,8 @@ models:
       - name: name
         description: "The customer name"
 
-      - name: store_name
-        description: "The name of the store, if person type is in store"
-
       - name: person_type
         description: "The person type (store, natural person or store contact)"
+        
+      - name: store_name
+        description: "The name of the store, if person type is in store"

@@ -5,6 +5,7 @@ with
             , cast(productsubcategoryid as int) as productsubcategoryid
             , name as product_name
             , color as productcolor
+            , standardcost
             , listprice 
             , case
                 when productline = 'R' then 'Road'

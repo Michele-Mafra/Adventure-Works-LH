@@ -75,9 +75,10 @@ with
             , salesorderheader.salespersonid
             , salesorderdetail.salesorderdetailid
             , salesorderdetail.salesorderid
+            , salesorderheader.territoryid
             , salesorderdetail.unitprice
             , salesorderdetail.orderqty
-            , salesorderdetail.revenue -- Total value of the sale, including product discount, without taxes and freight
+            , salesorderdetail.subtotal -- Total value of the sale, including product discount, without taxes and freight
             , salesorderheader.order_status
             , dates.date as order_date
         from salesorderdetail
