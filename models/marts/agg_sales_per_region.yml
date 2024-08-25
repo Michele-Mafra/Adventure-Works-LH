@@ -9,6 +9,11 @@ models:
         tests:
           - unique
           - not_null
+      - name: territoryid
+        description: "The ID for the territory"
+        tests:
+          - unique
+          - not_null
       - name: subtotal_2012
         description: "Value of the total sales in 2012 per region"
       - name: subtotal_2013

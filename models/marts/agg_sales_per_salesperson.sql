@@ -68,4 +68,3 @@ with
     )
 select *
 from agg_salesperson
-

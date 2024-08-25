@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: dim_salesreason
+  - name: dim_salesreasons
     description: "Sales reason dimension that includes details about reasons associated with sales orders"
     columns:
       - name: sk_salesreason
@@ -15,18 +15,7 @@ models:
         tests:
           - not_null
 
-      - name: salesreasonid
-        description: "The ID of the sale reason"
+      - name: combined_reasons
+        description: "The name and type of the reason"
         tests:
           - not_null
-
-      - name: reason
-        description: "The name of the reason"
-        tests:
-          - not_null
-
-      - name: reason_type
-        description: "The type of the reason"
-        tests:
-          - not_null
-

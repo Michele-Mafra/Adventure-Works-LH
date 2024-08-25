@@ -47,6 +47,7 @@ with
     , agg_salesregion as (
         select
             salesregion.territory
+            , fact_sales.territoryid
             , sales_2012.subtotal_2012
             , sales_2013.subtotal_2013
             , sales_2014.subtotal_2014

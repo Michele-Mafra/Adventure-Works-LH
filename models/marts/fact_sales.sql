@@ -1,91 +1,77 @@
+-- Tabela Fato de Vendas com Razões Agregadas
 with
     customers as (
         select
             sk_customer as fk_customer
             , customerid
         from {{ref('dim_customers')}} 
-    )
+    ),
 
-    , creditcards as (
+    creditcards as (
         select
             sk_creditcard as fk_creditcard
             , creditcardid
         from {{ref('dim_creditcards')}}
-    )
+    ),
 
-    , locations as (
+    locations as (
         select
             sk_shiptoaddress as fk_shiptoaddress
             , shiptoaddressid
         from {{ref('dim_locations')}}
-    )
+    ),
 
-    , products as (
+    products as (
         select
             sk_product as fk_product
             , productid
         from {{ref('dim_products')}}
-    )
+    ),
 
-    , dates as (
+    dates as (
         select
             date
         from {{ref('dim_dates')}}
-    )
+    ),
 
-    , reasons as (
+    aggregated_reasons as (
         select
             sk_salesreason as fk_salesreason
             , salesorderid
-            , row_number() over (
-                partition by
-                    salesorderid
-            ) as dedup_tabela
-        from {{ref('dim_salesreasons')}}
-    )
+        from {{ ref('dim_salesreasons') }}
+    ),
 
-    /* for each orderid we can have more than one reason for the sale. The dedup was included to create the surrogate key for the fact table from the sales order id */ 
-
-    , dedup as (  
-        select *
-        from reasons
-        where dedup_tabela = 1
-    )
-
-    , salesorderdetail as (
+    salesorderdetail as (
         select *
         from {{ref('stg_sap__salesorderdetail')}} 
-    )
+    ),
 
-    , salesorderheader as (
+    salesorderheader as (
         select *
         from {{ref('stg_sap__salesorderheader')}} 
-    )
+    ),
 
-    , final as (
+    final as (
         select
-            {{ surrogate_key(
-                'salesorderdetail.salesorderdetailid'
-            ) }} as sk_factsales -- Surrogate Key
+            {{ surrogate_key('salesorderdetail.salesorderdetailid') }} as sk_factsales
             , products.fk_product
             , customers.fk_customer
             , locations.fk_shiptoaddress
             , creditcards.fk_creditcard
-            , dedup.fk_salesreason 
+            , aggregated_reasons.fk_salesreason
             , salesorderheader.salespersonid
-            , salesorderdetail.salesorderdetailid
-            , salesorderdetail.salesorderid
+            , salesorderheader.salesorderid
             , salesorderheader.territoryid
             , salesorderdetail.unitprice
             , salesorderdetail.orderqty
-            , salesorderdetail.subtotal -- Total value of the sale, including product discount, without taxes and freight
+            , salesorderdetail.subtotal
             , salesorderheader.order_status
             , dates.date as order_date
         from salesorderdetail
         left join salesorderheader on salesorderdetail.salesorderid = salesorderheader.salesorderid
         left join dates on salesorderheader.order_date = dates.date 
         left join products on salesorderdetail.productid = products.productid
-        left join dedup on salesorderdetail.salesorderid = dedup.salesorderid 
+        left join aggregated_reasons on salesorderdetail.salesorderid = aggregated_reasons.salesorderid 
         left join customers on salesorderheader.customerid = customers.customerid
         left join creditcards on salesorderheader.creditcardid = creditcards.creditcardid
         left join locations on salesorderheader.shiptoaddressid = locations.shiptoaddressid

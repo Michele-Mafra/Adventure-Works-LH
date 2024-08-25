@@ -34,11 +34,6 @@ models:
       - name: salespersonid
         description: "The ID of the sales person table"
       
-      - name: salesorderdetailid
-        description: "The unique identifier of the sales order detail"
-        tests:
-          - not_null
-
       - name: salesorderid
         description: "The unique identifier of the sales order"
         tests:

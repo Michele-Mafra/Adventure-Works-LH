@@ -7,18 +7,17 @@ with
         select *
         from {{ ref('stg_sap__salesorderheadersalesreason') }}
     )
-    , transformed as (
+    , aggregated_reasons as (
         select
-            {{ surrogate_key([
-                'salesorderheadersalesreason.salesorderid'
-            ]) }} as sk_salesreason
-            , salesorderheadersalesreason.salesorderid
-            , salesorderheadersalesreason.salesreasonid
-            , salesreason.reason
-            , salesreason.reason_type
+            salesorderheadersalesreason.salesorderid
+            , string_agg(salesreason.reason, ', ') as combined_reasons -- Combine the salesreason per saleorderid
         from salesorderheadersalesreason
         left join salesreason on salesorderheadersalesreason.salesreasonid = salesreason.salesreasonid
+        group by salesorderheadersalesreason.salesorderid
     )
     
-select *
-from transformed
+select
+    {{ surrogate_key('salesorderid') }} as sk_salesreason 
+    , salesorderid
+    , combined_reasons 
+from aggregated_reasons
