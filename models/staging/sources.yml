@@ -21,6 +21,17 @@ sources:
           - name: city
             description: "The name of the city"
 
+      - name: businessentityaddress
+        description: "Address information for business entities"
+        columns:
+          - name: addressid
+            tests:
+              - unique
+              - not_null
+          - name: businessentityid
+            tests:
+              - not_null
+
       - name: countryregion
         description: "Lookup table containing codes for countries and regions"
         columns:
@@ -185,7 +196,7 @@ sources:
           - name: orderstatus
             description: "Order current status: in process, approved, backordered, rejected, shipped, cancelled"
           - name: onlineorderflag
-            description: "A flag that defines if the orde was placed by sales person or placed online by customer"
+            description: "A flag that defines if the order was placed in a store or online by customer"
             tests:
               - not_null
           - name: subtotal
@@ -241,8 +252,6 @@ sources:
               - not_null
           - name: name
             description: "Sales reason description"
-          - name: reasontype
-            description: "Category the sales reason belongs to"
 
       - name: salesterritory
         description: "Sales territory lookup table"

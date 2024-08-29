@@ -1,4 +1,3 @@
--- Tabela Fato de Vendas com Razões Agregadas
 with
     customers as (
         select
@@ -59,6 +58,7 @@ with
             , locations.fk_shiptoaddress
             , creditcards.fk_creditcard
             , aggregated_reasons.fk_salesreason
+            , salesorderdetail.salesorderdetailid
             , salesorderheader.salespersonid
             , salesorderheader.salesorderid
             , salesorderheader.territoryid
@@ -66,6 +66,7 @@ with
             , salesorderdetail.orderqty
             , salesorderdetail.subtotal
             , salesorderheader.order_status
+            , salesorderheader.ordered_online
             , dates.date as order_date
         from salesorderdetail
         left join salesorderheader on salesorderdetail.salesorderid = salesorderheader.salesorderid

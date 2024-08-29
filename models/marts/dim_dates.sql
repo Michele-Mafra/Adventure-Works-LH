@@ -2,8 +2,8 @@ with
     date_range as (
         select
             generate_date_array(
-                date('2010-01-01') -- Início de um range amplo
-                , date('2025-12-31')  -- Fim de um range amplo
+                date('2011-05-01') -- Início de um range amplo
+                , date('2014-06-30')  -- Fim de um range amplo
         ) as dates
     )
 

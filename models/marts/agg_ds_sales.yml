@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: agg_ds_sales
+    description: "Aggregated table with information about sales per item and store for DS analysis"
+    columns:
+      - name: salesorderdetailid
+        description: "Primary key for order details"
+        tests:
+          - not_null
+      - name: salesorderid
+        description: "Primary key for order"
+        tests:
+          - not_null
+      - name: customerid
+        description: "Primary key for customers"
+        tests:
+          - not_null
+      - name: product_name
+        description: "Full name of each product"
+      - name: subcategory_name
+        description: "Full name of each product subcategory"
+      - name: region
+        description: "Region the order was placed"
+      - name: storeid
+        description: "Primary key for store records"
+      - name: productid
+        description: "Primary key for product records"
+        tests:
+          - not_null
+      - name: store_name
+        description: "Full name of each store"
+      - name: order_date
+        description: "The date the order was placed"
+      - name: orderqty
+        description: "Total quantity of products ordered"

@@ -19,7 +19,10 @@ with
             when status = 6 then 'Cancelled'
             else null
         end as order_status
-            , onlineorderflag as ordered_online
+            , case
+                when onlineorderflag = True then 'Online'
+                else 'Store'
+                end as ordered_online
             , cast(subtotal as numeric) as subtotal
             , cast(taxamt as numeric) as tax
             , cast(freight as numeric) as freight
