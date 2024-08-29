@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: agg_sales_per_region
+    description: "Aggregated table with information about the sales per region"
+    columns: 
+      - name: territory
+        description: "Territory name"
+        tests:
+          - unique
+          - not_null
+      - name: territoryid
+        description: "The ID for the territory"
+        tests:
+          - unique
+          - not_null
+      - name: subtotal_2012
+        description: "Value of the total sales in 2012 per region"
+      - name: subtotal_2013
+        description: "Value of the total sales in 2013 per region"
+      - name: subtotal_2014
+        description: "Value of the total sales in 2014 per region"
+      - name: total_sales
+        description: "Total sale per region"
+      - name: orders_qty
+        description: "Total orders per region"
+      - name: avg_ticket
+        description: "Average ticket per region"
+      - name: first_sale
+        description: "Date of the first sale per region"
+      - name: last_sale
+        description: "Date of the last sale per region"
