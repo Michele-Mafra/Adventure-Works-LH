@@ -1,4 +1,4 @@
-Project Overview Video
+# Project Overview Video
 
 This video provides an overview of the data project developed for Adventure Works. It covers key aspects such as:
 
