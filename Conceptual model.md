@@ -1,4 +1,4 @@
-Data Models and Lineage
+# Data Models and Lineage
 
 This link provides access to key visualizations, including:
 
