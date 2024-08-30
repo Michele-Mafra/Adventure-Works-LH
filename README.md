@@ -31,4 +31,4 @@ Google BigQuery
 
 Each table created within this project undergoes rigorous testing to ensure the highest data quality.
 
-Note: seed files were removed from the repository after executing dbt seed to optimize the runtime of dbt run. These files can be retrieved from the following repository: Tech Indicium Academy dbt.
+Note: seed files were removed from the repository after executing dbt seed to optimize the runtime of dbt run. These files can be retrieved from [THIS](https://github.com/techindicium/academy-dbt) repository.
