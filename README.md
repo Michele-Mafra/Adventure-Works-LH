@@ -14,3 +14,21 @@ This project serves as a foundational layer for business intelligence, enabling 
 For more information about the Adventure Works Data, access their data dictionary [HERE](https://dataedo.com/download/AdventureWorks.pdf).
 
 All the schemas, tables and interactions can also be checked [HERE](https://moidulhassan.wordpress.com/wp-content/uploads/2014/07/adventureworks2008_schema.gif).
+
+Tools utilized in this project:
+
+Google BigQuery
+dbt Cloud
+Power BI
+GitHub
+
+Project Structure:
+
+Staging (stg): in the staging layer, raw tables were refined by adjusting data types, reorganizing column positions, and renaming fields for consistency.
+Dimensions (dim): dimension tables were crafted to describe and contextualize the data within the fact table, following a star schema to support effective relationships in Power BI.
+Fact Table (fact): the fact table consolidates the core data, providing direct answers to the business questions and incorporating essential IDs for seamless future connections.
+Aggregations (aggs): aggregated tables were designed to enhance processing efficiency and facilitate deeper analytical insights for Data Science.
+
+Each table created within this project undergoes rigorous testing to ensure the highest data quality.
+
+Note: seed files were removed from the repository after executing dbt seed to optimize the runtime of dbt run. These files can be retrieved from the following repository: Tech Indicium Academy dbt.
