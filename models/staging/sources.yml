@@ -21,17 +21,6 @@ sources:
           - name: city
             description: "The name of the city"
 
-      - name: businessentityaddress
-        description: "Address information for business entities"
-        columns:
-          - name: addressid
-            tests:
-              - unique
-              - not_null
-          - name: businessentityid
-            tests:
-              - not_null
-
       - name: countryregion
         description: "Lookup table containing codes for countries and regions"
         columns:
