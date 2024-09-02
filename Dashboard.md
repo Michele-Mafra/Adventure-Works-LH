@@ -7,5 +7,5 @@ This Power BI file includes a dashboard designed for Adventure Works:
 
 Access the file to explore the dashboard and the insights it offers.
 
-https://drive.google.com/file/d/1D5xV8wPvIeXssOJrcQBf6-NHAkGbm24c/view?usp=sharing
+https://drive.google.com/file/d/1ezxHTSHlyqTQLWEcLPCePtoyjD3pVPKW/view?usp=drive_link
 
