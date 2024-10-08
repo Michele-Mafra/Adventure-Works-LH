@@ -17,7 +17,7 @@ All the schemas, tables and interactions can also be checked [HERE](https://raw.
 
 ## Tools utilized in this project:
 
-Google BigQuery
+- Google BigQuery
 - dbt Cloud
 - Power BI
 - GitHub
