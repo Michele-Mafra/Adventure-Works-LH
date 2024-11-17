@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: dim_customers
+    columns:
+      - name: sk_customer
+        description: "The surrogate key of the customer"
+        tests:
+          - unique
+          - not_null
+
+      - name: customerid
+        description: "The natural key of the customer"
+        tests:
+          - not_null
+          - unique
+             
+      - name: name
+        description: "The customer name"
+
+      - name: person_type
+        description: "The person type (store, natural person or store contact)"
+        
+      - name: store_name
+        description: "The name of the store, if person type is in store"
+
+      - name: first_order_date
+        description: "The date of the customer's first order"

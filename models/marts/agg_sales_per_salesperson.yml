@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: agg_sales_per_salesperson
+    description: "Aggregated table with information about sales per salesperson"
+    columns: 
+      - name: salesperson_id
+        description: "Primary key for salesperson records"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: "Full name of each sales person"
+      - name: salesquota
+        description: "Projected yearly sales for each sales person"
+      - name: bonus
+        description: "Bonus due if sales person quota is met"
+      - name: commissionpct
+        description: "Commision percent the sales person received per sale"
+      - name: total_sales_2012
+        description: "Total value of each sales person sales in 2012"
+      - name: total_sales_2013
+        description: "Total value of each sales person sales in 2013"
+      - name: total_sales_2014
+        description: "Total value of each sales person sales in 2014"
+      - name: total_sales
+        description: "Total value of each sales person sales"
+      - name: orders_qty
+        description: "Total orders for each salesperson"
+      - name: avg_ticket
+        description: "Average ticket of each salesperson"
+      - name: first_sale
+        description: "Date of the first order the salesperson was responsible for"
+      - name: last_sale
+        description: "Date of the last order the salesperson was responsible for"

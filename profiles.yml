@@ -1,0 +1,10 @@
+default:
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: third-anvil-431614-c5
+      threads: 4
+      keyfile: /Users/rafaelabertuol/Desktop/DESAFIO LH/third-anvil-431614-c5-61f879affe61.json
+      location: US
+  target: dev
