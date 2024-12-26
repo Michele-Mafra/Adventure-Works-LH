@@ -1,6 +1,16 @@
-# Indicium Academy
+# Desafio Final Lighthouse by Indicium
 
-Repositório para ser utilizado no desafio para a obtenção da certificação de Analytics Engineer by Indicium. Faça o fork deste repositório e o utilize durante o desafio para fazer a insgestão das tabelas do SAP do Adventure Works.
+Repositório para o desafio Final de Dados Lighthouse by Indicium. Faça o fork deste repositório e o utilize durante o desafio para fazer a insgestão das tabelas do SAP do Adventure Works.
+
+# A Certificação
+
+O objetivo desta certificação é avaliar suas competências em um projeto prático conforme a metodologia do Modern Analytics Stack, desenvolvida pela Indicium mas que guarda muitas semelhanças com o Modern Data Stack utilizado por milhares de times de dados modernos. A obtenção desta certificação indica que você:
+
+Entende o processo de construção de uma plataforma de analytics moderna;
+Entende os objetivos da modelagem dimensional em data warehouses modernos;
+Sabe aplicar a linguagem SQL e a ferramenta dbt para modelar dados em data warehouses modernos;
+Conhece as boas práticas de visualização de dados e sua aplicação em uma ferramenta de Self-Service BI.
+É capaz de desenvolver, validar e testar modelos e abordagens estatísticas mais adequadas para o problema de negócio
 
 ## Instruções
 
