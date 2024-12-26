@@ -1,0 +1,161 @@
+version: 2
+
+sources:
+  - name: sap_adw
+    description: Fonte do SAP do Adventure Works
+    schema: sap_adw
+    tables:
+      - name: address
+        description: Tabela de endereços
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 9
+        columns:
+          - name: addressid
+            description: Id do endereço. Chave primária (PK) da tabela
+            data_type: int64
+            tests:
+              - unique
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+
+          - name: addressline1
+            description: Campo 1 para descrição do endereço
+            tests:
+              - dbt_expectations.expect_column_to_exist
+              - not_null
+
+          - name: addressline2
+            description: Campo 2 para descrição do endereço
+
+          - name: city
+            description: Cidade do endereço
+            tests:
+              - dbt_expectations.expect_column_to_exist
+              - not_null
+
+          - name: stateprovinceid
+            description: Id do estado. Chave estrangeira (FK) da tabela de estados
+            data_type: int64
+            tests:
+              - dbt_expectations.expect_column_to_exist
+              - not_null
+              - relationships:
+                  field: stateprovinceid
+                  to: ref('stateprovince')
+
+          - name: spatiallocation
+            description: Dados de localização espacial do endereço
+
+          - name: rowguid
+            description: Número ROWGUIDCOL que identifica exclusivamente o registro
+            tests:
+              - unique
+              - not_null
+
+          - name: modifieddate
+            description: Data e hora em que o registro foi atualizado pela última vez
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+      - name: stateprovince
+        description: Tabela de Estados
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 8
+        columns:
+          - name: stateprovinceid
+            description: Id do estado.Chave primária (PK) da tabela
+            data_type: int64
+            tests:
+              - unique
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+
+          - name: stateprovincecode
+            description: Sigla do estado
+            tests:
+              - dbt_expectations.expect_column_to_exist
+              - not_null
+          - name: countryregioncode
+            description: Código do país. Chave estrangeira (FK) da tabela de países
+            data_type: string
+            tests:
+              - not_null
+              - relationships:
+                  field: countryregioncode
+                  to: ref('countryregion')
+
+          - name: isonlystateprovinceflag
+            description: Flag de marcação se o estado é um Estado País
+            data_type: boolean
+
+          - name: name
+            description: Nome do estado
+            tests:
+              - dbt_expectations.expect_column_to_exist
+              - not_null
+
+          - name: territoryid
+            description: Id do território de vendas. Chave estrangeira (FK) da tabela de territórios
+            data_type: int64
+            tests:
+              - dbt_expectations.expect_column_to_exist
+              - relationships:
+                  field: territoryid
+                  to: ref('salesterritory')
+
+          - name: rowguid
+            description: Número ROWGUIDCOL que identifica o registro
+            tests:
+              - unique
+              - not_null
+
+          - name: modifieddate
+            description: Data e hora que o registro que foi atualizado pela última vez
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+
+      - name: countryregion
+        description: Tabela de Países
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 3
+        columns:
+          - name: countryregioncode
+            description: Código do país e Chave primária (PK) da tabela
+            data_type: string
+            tests:
+              - unique
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+
+          - name: name
+            description: Nome do país
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+
+          - name: modifieddate
+            description: Data e hora que o registro foi atualizado pela última vez
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+      
+      - name: department
+        description: Tabela de departmento/setor
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_to_exist
+
+      - name: employee
+        description: Tabela de funcionarios
+        tests: 
+          - not_null
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 15
+          
+
+   
+ 
