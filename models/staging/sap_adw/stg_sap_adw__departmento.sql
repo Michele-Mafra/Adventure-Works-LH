@@ -1,6 +1,6 @@
 with 
 
-    fonte_departamento as (
+    departamento as (
 
         select 
             cast(departmentid as int) as id_departamento
@@ -15,4 +15,4 @@ with
 
 
 select * 
-from fonte_departamento
+from departamento

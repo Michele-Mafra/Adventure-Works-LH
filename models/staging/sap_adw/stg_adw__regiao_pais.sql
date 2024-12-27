@@ -1,5 +1,5 @@
 with
-    fonte_regiao_pais as (
+    regiao_pais as (
         select
             countryregioncode as codigo_pais
             , name as nome_pais
@@ -9,4 +9,4 @@ with
     )
 
 select *
-from fonte_regiao_pais
+from regiao_pais

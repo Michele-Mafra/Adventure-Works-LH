@@ -58,6 +58,12 @@ sources:
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
+      - name: businessentity
+        description: Tabela entidade de negócio  
+      - name: businessentitycontact
+        description: Tabela contatos de entidade de negócio
+      - name: businessentityaddress
+        description: Tabela endereços de entidade de negócio
       - name: stateprovince
         description: Tabela de Estados
         tests:
@@ -284,3 +290,85 @@ sources:
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
+      
+      
+      - name: person
+        description: Tabela de pessoas
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 13
+        columns:
+          - name: businessentityid
+            description: Id da pessoa. Chave primária (PK) da tabela
+            data_type: int64
+            tests:
+              - unique
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+
+          - name: persontype
+            description: Tabela que descreve o tipo de pessoas e a relação com a ADW
+              (SC = Logista, IN = Cliente, SP = Vendedor, EM = Empregado, VC = Fornecedor, GC = Geral)
+            tests:
+              - not_null
+              - accepted_values:
+                  values:
+                    - ['SC', 'IN', 'SP', 'EM', 'VC', 'GC']
+          
+          - name: namestyle
+            description: Estilo de nome (true = E ocidental ou false = Estilo oriental)
+            data_type: boolean
+            tests:
+                - not_null
+
+          - name: title
+            description: Referencia ao nome ex = Mr ou Ms
+
+          - name: firstname
+            description: primeiro nome da pessoa
+            tests:
+                - not_null
+
+         
+          - name: middlename
+            description: Nome do meio
+          - name: lastname
+            description: Ultimo nome 
+          - name: suffix
+            description: Sufixo do nome. Ex = Sr. or Jr
+          - name: emailpromotion
+            description: Tipo de contato por e-mail 
+                (0 = Não receber,  1 = Somente pela Adw,  2 = Adw e parceiros)
+            tests:
+                - not_null
+                - accepted_values:
+                    values: [0, 1, 2]
+                    quote: false
+          - name: additionalcontactinfo
+            description: Informaçoes adicionais de contato sobre a pessoa - formato xml
+
+          - name: demographics
+            description: Informações pessoais como hobbies e receitas coletadas on-line. Dados ultilizados para análise de vendas
+
+          - name: rowguid
+            description: Número ROWGUIDCOL que identifica o registro
+            tests:
+              - not_null
+
+          - name: modifieddate
+            description: Data e hora em que o registro foi atualizado pela última vez
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+              
+      
+            
+
+                  
+              
+        
+                  
+            
+                     
+
+
