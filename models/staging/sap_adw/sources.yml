@@ -58,8 +58,27 @@ sources:
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
+
+      - name: addresstype
+        description: Tabela tipos de endereço
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 4
+        columns:
+          - name: addresstypeid
+            description: Id do tipo de endereço. Chave primária (PK) da tabela
+            data_type: int64
+            tests:
+              - unique
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+          - name: name
+            description: Nome do tipo de endereco
+            tests:
+              - not_null
+
       - name: businessentity
-        description: Tabela entidade de negócio  
+        description: Tabela entidade de negócio
       - name: businessentitycontact
         description: Tabela contatos de entidade de negócio
       - name: businessentityaddress
@@ -235,7 +254,7 @@ sources:
           - relationships:
               field: currencycode
               to: ref('currency')
-      
+
       - name: salesterritory
         description: Tabela de territórios de vendas
         tests:
@@ -249,13 +268,13 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-          
+
           - name: name
             description: Nome do territorio
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-          
+
           - name: countryregioncode
             description: Código do páis do território. Chave estrangeira (FK) da tabela de países
             data_type: string
@@ -264,34 +283,33 @@ sources:
               - dbt_expectations.expect_column_to_exist
               - relationships:
                   field: countryregioncode
-                  to: ref('countryregion')              
-          
+                  to: ref('countryregion')
+
           - name: group
             description: Grupo continental do territorio
-          
+
           - name: salesytd
             description: Somatorio de vendas por ano e data (YTD)
             data_type: float64
-          
+
           - name: saleslastyear
             description: Somatorio de vendas do último ano
             data_type: float64
-          
+
           - name: costytd
             description: Somatorio de custo year to date (YTD)
             data_type: float64
-          
+
           - name: costlastyear
             description: Somatorio de custo do último ano
             data_type: float64
-          
+
           - name: modifieddate
             description: Data e hora que o registro foi atualizado pela última vez
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-      
-      
+
       - name: person
         description: Tabela de pessoas
         tests:
@@ -307,19 +325,20 @@ sources:
               - dbt_expectations.expect_column_to_exist
 
           - name: persontype
-            description: Tabela que descreve o tipo de pessoas e a relação com a ADW
+            description:
+              Tabela que descreve o tipo de pessoas e a relação com a ADW
               (SC = Logista, IN = Cliente, SP = Vendedor, EM = Empregado, VC = Fornecedor, GC = Geral)
             tests:
               - not_null
               - accepted_values:
                   values:
-                    - ['SC', 'IN', 'SP', 'EM', 'VC', 'GC']
-          
+                    - ["SC", "IN", "SP", "EM", "VC", "GC"]
+
           - name: namestyle
             description: Estilo de nome (true = E ocidental ou false = Estilo oriental)
             data_type: boolean
             tests:
-                - not_null
+              - not_null
 
           - name: title
             description: Referencia ao nome ex = Mr ou Ms
@@ -327,23 +346,22 @@ sources:
           - name: firstname
             description: primeiro nome da pessoa
             tests:
-                - not_null
+              - not_null
 
-         
           - name: middlename
             description: Nome do meio
           - name: lastname
-            description: Ultimo nome 
+            description: Ultimo nome
           - name: suffix
             description: Sufixo do nome. Ex = Sr. or Jr
           - name: emailpromotion
-            description: Tipo de contato por e-mail 
-                (0 = Não receber,  1 = Somente pela Adw,  2 = Adw e parceiros)
+            description: Tipo de contato por e-mail
+              (0 = Não receber,  1 = Somente pela Adw,  2 = Adw e parceiros)
             tests:
-                - not_null
-                - accepted_values:
-                    values: [0, 1, 2]
-                    quote: false
+              - not_null
+              - accepted_values:
+                  values: [0, 1, 2]
+                  quote: false
           - name: additionalcontactinfo
             description: Informaçoes adicionais de contato sobre a pessoa - formato xml
 
@@ -360,15 +378,59 @@ sources:
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-              
-      
-            
 
-                  
-              
-        
-                  
-            
-                     
+      - name: emailaddress
+        description: Tabela de e-mails de pessoas
+        tests:
+        - dbt_expectations.expect_table_column_count_to_equal:
+            value: 5
+        columns:
+        - name: emailaddressid
+          description: Id do e-mail. Chave primária (PK) da tabela
+          data_type: int64
+          tests:
+            - unique
+            - not_null
+            - dbt_expectations.expect_column_to_exist
 
+        - name: businessentityid
+          description: Id da pessoa. Chave primária (PK) e estrangeira (FK) da tabela de pessoas
+          data_type: int64
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_to_exist
+            - relationships:
+                field: businessentityid
+                to: ref('person')
 
+        - name: emailaddress
+          description: Endereço do e-mail
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_to_exist
+
+        - name: rowguid
+          description: Número ROWGUIDCOL que identifica exclusivamente o registro
+          tests:
+            - unique
+            - not_null
+
+        - name: modifieddate
+          description: Data e hora em que o registro foi atualizado pela última vez
+          tests:
+            - not_null
+            - dbt_expectations.expect_column_to_exist
+
+      - name: product
+        description: Tabela de produtos
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 25
+        columns:
+          - name: productid
+            description: Id do produto. Chave primária (PK) da tabela
+            data_type: int64
+            tests:
+              - unique
+              - not_null
+              - dbt_expectations.expect_column_to_exist
