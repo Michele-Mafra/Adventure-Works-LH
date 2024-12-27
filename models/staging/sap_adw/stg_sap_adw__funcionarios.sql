@@ -1,6 +1,6 @@
 with 
 
-    fonte_funcionarios as (
+    funcionarios as (
 
         select
             cast(businessentityid as int) as id_empresarial
@@ -15,7 +15,7 @@ with
             --, vacationhours
             , sickleavehours
             --, currentflag
-            , rowguid
+            , rowguid as linha_guia
             , cast(format_timestamp('%Y-%m-%d %H:%M:%S', cast(modifieddate as timestamp)) as timestamp) as data_modificacao
             --, organizationnode
         
@@ -24,4 +24,4 @@ with
     )
 
 
-select * from fonte_funcionarios
+select * from funcionarios

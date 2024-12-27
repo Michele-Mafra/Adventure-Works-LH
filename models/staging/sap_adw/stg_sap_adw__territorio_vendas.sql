@@ -11,7 +11,7 @@ with
             , coalesce(round(cast(saleslastyear as numeric),2),0) as vl_venda_ultimo_ano
             , coalesce(round(cast(costytd as numeric),2),0) as vl_custo_ytd
             , coalesce(round(cast(costlastyear as numeric),2),0) as vl_custo_ultimo_ano
-            , rowguid
+            , rowguid as linha_guia
             , cast(format_timestamp('%Y-%m-%d %H:%M:%S', cast(modifieddate as timestamp)) as timestamp) as dt_modificacao        
 
             

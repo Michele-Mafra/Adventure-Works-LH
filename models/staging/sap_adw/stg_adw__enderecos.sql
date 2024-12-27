@@ -1,6 +1,6 @@
 with 
 
-    fonte_endereco as (
+    endereco as (
 
         select 
             cast(addressid as int) as id_endereco
@@ -9,7 +9,7 @@ with
             , cast(stateprovinceid as int) as id_estado
             , postalcode as nr_cep
             , spatiallocation as localizacao_espacial
-            , rowguid
+            , rowguid as linha_guia
             , cast(format_timestamp('%Y-%m-%d %H:%M:%S', cast(modifieddate as timestamp)) as timestamp) as data_modificacao
 
         
@@ -18,4 +18,4 @@ with
 
     )
 select * 
-from fonte_endereco
+from endereco
