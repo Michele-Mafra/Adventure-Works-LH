@@ -142,7 +142,7 @@ sources:
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-      
+
       - name: department
         description: Tabela de departmento/setor
         tests:
@@ -151,11 +151,136 @@ sources:
 
       - name: employee
         description: Tabela de funcionarios
-        tests: 
+        tests:
           - not_null
           - dbt_expectations.expect_table_column_count_to_equal:
               value: 15
-          
 
-   
- 
+      - name: store
+        description: Tabela de Lojas
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 6
+
+        columns:
+          - name: businessentityid
+            description: Id da loja. Chave primária (PK) e chave estrangeira (FK) da tabela de entidades
+            tests:
+              - unique
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+              - relationships:
+                  field: businessentityid
+                  to: ref('businessentity')
+
+          - name: name
+            description: Nome da loja
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+
+          - name: salespersonid
+            description: Id do vendedor. Chave estrangeira (FK) da tabela de pessoas
+            data_type: int64
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+              - relationships:
+                  field: businessentityid
+                  to: ref('person')
+
+          - name: demographics
+            description: dados demográficos da loja
+
+          - name: rowguid
+            description: Número ROWGUIDCOL que identifica exclusivamente o registro
+            tests:
+              - unique
+              - not_null
+
+          - name: modifieddate
+            description: Data e hora do registro atualizado pela última vez
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+
+      - name: countryregioncurrency
+        description: Tabela de moedas dos países
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 3
+        columns:
+          - name: countryregioncode
+            description: Código do país. Chave primária (PK) e estrangeira (FK) da tabela de países
+            data_type: string
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+              - relationships:
+                  field: countryregioncode
+                  to: ref('countryregion')
+
+      - name: currencycode
+        description: Cdigo da moeda. Chave primária (PK) e estrangeira (FK) da tabela de moedas
+        data_type: string
+        tests:
+          - not_null
+          - dbt_expectations.expect_column_to_exist
+          - relationships:
+              field: currencycode
+              to: ref('currency')
+      
+      - name: salesterritory
+        description: Tabela de territórios de vendas
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 10
+        columns:
+          - name: territoryid
+            description: Id do território e chave primária (PK) da tabela
+            data_type: int64
+            tests:
+              - unique
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+          
+          - name: name
+            description: Nome do territorio
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+          
+          - name: countryregioncode
+            description: Código do páis do território. Chave estrangeira (FK) da tabela de países
+            data_type: string
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+              - relationships:
+                  field: countryregioncode
+                  to: ref('countryregion')              
+          
+          - name: group
+            description: Grupo continental do territorio
+          
+          - name: salesytd
+            description: Somatorio de vendas por ano e data (YTD)
+            data_type: float64
+          
+          - name: saleslastyear
+            description: Somatorio de vendas do último ano
+            data_type: float64
+          
+          - name: costytd
+            description: Somatorio de custo year to date (YTD)
+            data_type: float64
+          
+          - name: costlastyear
+            description: Somatorio de custo do último ano
+            data_type: float64
+          
+          - name: modifieddate
+            description: Data e hora que o registro foi atualizado pela última vez
+            tests:
+              - not_null
+              - dbt_expectations.expect_column_to_exist
