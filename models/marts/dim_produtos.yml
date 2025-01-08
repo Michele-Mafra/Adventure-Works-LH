@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: dim_produtos
+    description: Tabela de dimensão com dados de produtos da Adw
+    columns:
+      - name: sk_produto
+        description: Sk do produto
+        tests:
+          - unique
+          - not_null
+      - name: id_produto
+        description: Id do produto 
+        data_type: int64
+        tests:
+          - not_null      
+      - name: nome_produto
+        description: Nome do produto
+        tests:
+          - not_null
+      - name: numero_produto
+        description: Número do produto
+        tests:
+          - not_null
+      - name: producao_propria
+        description: Flag de marcação do produto se é produção própria
+        data_type: boolean
