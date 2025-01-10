@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: dim_cliente
+    columns:
+      - name: sk_cliente
+        description: Sk de Cliente
+        tests:
+          - unique
+          - not_null
+
+      - name: id_cliente
+        description: ID do cliente
+        data_type: int64
+        tests:
+          - not_null
+      - name: id_loja
+        description: id da loja
+        data_type: int64
+        tests: 
+          - not_null
+      - name: tipo_pessoa
+        description: tipo de pessoa
+      - name: nome_pessoa
+        description: nome da pessoa
+      - name: nome_loja
+        description: nome da loja        
+
+

@@ -30,13 +30,15 @@ with
             , categoria.id_produto_categoria
             , modelo.id_produto_modelo
             , stg_produtos.nome_produto
+            , modelo.nome_modelo_produto
+            , stg_produtos.cor
             , stg_produtos.numero_produto
             , stg_produtos.producao_propria
-            , stg_produtos.item_vendavel
-            , stg_produtos.cor
+            , stg_produtos.item_vendavel             
             , stg_produtos.quantidade_minima_estoque
             , stg_produtos.quantidade_minima_reabastecimento
             , stg_produtos.valor_custo_produto
+            , stg_produtos.valor_tabela_produto
             , stg_produtos.nr_tamanho
             , stg_produtos.codigo_unidade_medida_tamanho
             , stg_produtos.codigo_unidade_medida_peso
@@ -49,7 +51,6 @@ with
             , stg_produtos.data_fim_venda
             , stg_produtos.descontinuado                        
             , subcategoria.nome_subcategoria_produto            
-            , modelo.nome_modelo_produto
             , modelo.descricao_catalago
             --, unidade_medida_produtos.unidade_de_medidas
       
@@ -66,8 +67,7 @@ with
 
         select 
             {{ dbt_utils.generate_surrogate_key(['id_produto']) }} as sk_produto
-            ,join_tables.*     
-            ,cast(format_timestamp('%Y-%m-%d %H:%M:%S', current_timestamp, 'America/Sao_Paulo') as timestamp) as data_carga
+            ,join_tables.*      
         from join_tables
         
     )

@@ -5,7 +5,7 @@ with
 
         select  
             cast(shipmethodid as int) as id_forma_envio
-            , trim(name) as nm_forma_envio
+            , cast(name as string) as nm_forma_envio
             , coalesce(round(cast(shipbase as numeric),2),1) as valor_envio_minimo
             , coalesce(round(cast(shiprate as numeric),2),1) as valor_envio_por_kg
             , rowguid as linha_guia

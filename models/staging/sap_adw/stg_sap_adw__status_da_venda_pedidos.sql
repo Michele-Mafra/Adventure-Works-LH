@@ -18,8 +18,8 @@ status_da_venda_pedidos as (
             else 'Em processo'
         end as cd_status
         , cast(onlineorderflag as boolean) as pedido_realizado_online
-        , trim(purchaseordernumber) as nr_ordem_compra
-        , trim(accountnumber) as nr_conta_financeira
+        , cast(purchaseordernumber as string) as nr_ordem_compra
+        , cast(accountnumber as string) as nr_conta_financeira
         , cast(customerid as int) as id_cliente
         , cast(salespersonid as int) as id_vendedor
         , cast(territoryid as int) as id_territorio
@@ -27,7 +27,7 @@ status_da_venda_pedidos as (
         , cast(shiptoaddressid as int) as id_endereco_entrega
         , cast(shipmethodid as int) as id_forma_envio
         , cast(creditcardid as int) as id_cartao_credito
-        , trim(creditcardapprovalcode) as cd_aprovacao_cartao_credito
+        , cast(creditcardapprovalcode as string) as cd_aprovacao_cartao_credito
         , cast(currencyrateid as int) as id_taxa_cambio
         , coalesce(cast(subtotal as BIGNUMERIC),0) as valor_subtotal
         , coalesce(cast(taxamt as BIGNUMERIC),0) as valor_imposto

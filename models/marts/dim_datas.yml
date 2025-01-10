@@ -1,0 +1,36 @@
+version: 2
+models:
+  - name: dim_dats
+    description: Dimensão com informações de datas
+    tests:
+      - dbt_utils.equal_rowcount:
+          compare_model: ref('dim_datas')
+    columns:
+      - name: sk_date
+        description: Data no formato YYYY-MM-DD
+        tests:
+          - not_null
+      - name: year
+        description: Ano
+        tests:
+          - not_null
+      - name: month
+        description: Mês
+        tests:
+          - not_null
+      - name: month_abbreviation
+        description: Abreviação do mês (Jan, Feb, etc.)
+        tests:
+          - not_null
+      - name: day_of_week
+        description: Dia da semana (Segunda, Terça, etc.)
+        tests:
+          - not_null
+      - name: weekday
+        description: Dia da semana abreviado (Sun, Ter, etc.)
+        tests:
+          - not_null
+      - name: quarter
+        description: Trimestre do ano
+        tests:
+          - not_null

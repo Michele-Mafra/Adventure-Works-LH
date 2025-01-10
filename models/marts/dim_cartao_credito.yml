@@ -1,0 +1,27 @@
+version: 2
+models:
+  - name: dim_cartao_credito
+    description: Dimensão com informações de cartões de créditos ADW
+    columns:
+      - name: sk_cartao_credito
+        description: Sk do cartão de crédito
+        tests:
+          - unique
+          - not_null
+                  
+      - name: id_cartao_credito
+        description: Id do cartão de crédito
+        data_type: int64
+        tests:
+          - not_null
+
+      - name: tipo_cartao_credito
+        description: Código do tipo de cartão de crédito
+
+      - name: numero_cartao_credito
+        description: Número do cartão de crédito
+
+      - name: data_expiração
+        description: Mês e ano de expiração do cartão de crédito
+
+      

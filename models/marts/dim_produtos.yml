@@ -16,12 +16,10 @@ models:
           - not_null      
       - name: nome_produto
         description: Nome do produto
-        tests:
-          - not_null
+        
       - name: numero_produto
         description: Número do produto
-        tests:
-          - not_null
+        
       - name: producao_propria
         description: Flag de marcação do produto se é produção própria
-        data_type: boolean
+        

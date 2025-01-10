@@ -18,22 +18,18 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: addressline1
-            description: Campo 1 para descrição do endereço
+            description: Descrição do endereço 1
             tests:
               - dbt_expectations.expect_column_to_exist
               - not_null
-
           - name: addressline2
-            description: Campo 2 para descrição do endereço
-
+            description: Descrição do endereço 2
           - name: city
             description: Cidade do endereço
             tests:
               - dbt_expectations.expect_column_to_exist
               - not_null
-
           - name: stateprovinceid
             description: Id do estado chave estrangeira (FK) da tabela de estados
             data_type: int64
@@ -43,16 +39,13 @@ sources:
               - relationships:
                   field: stateprovinceid
                   to: ref('stateprovince')
-
           - name: spatiallocation
             description: Dados de localização espacial do endereço
-
           - name: rowguid
             description: Número ROWGUIDCOL que identifica exclusivamente o registro
             tests:
               - unique
               - not_null
-
           - name: modifieddate
             description: Data e hora em que o registro foi atualizado pela última vez
             tests:
@@ -96,7 +89,6 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: stateprovincecode
             description: Sigla do estado
             tests:
@@ -110,17 +102,14 @@ sources:
               - relationships:
                   field: countryregioncode
                   to: ref('countryregion')
-
           - name: isonlystateprovinceflag
             description: Flag de marcação se o estado é um Estado País
             data_type: boolean
-
           - name: name
             description: Nome do estado
             tests:
               - dbt_expectations.expect_column_to_exist
               - not_null
-
           - name: territoryid
             description: Id do território de vendas. Chave estrangeira (FK) da tabela de territórios
             data_type: int64
@@ -129,13 +118,11 @@ sources:
               - relationships:
                   field: territoryid
                   to: ref('salesterritory')
-
           - name: rowguid
             description: Número ROWGUIDCOL que identifica o registro
             tests:
               - unique
               - not_null
-
           - name: modifieddate
             description: Data e hora que o registro que foi atualizado pela última vez
             tests:
@@ -155,13 +142,11 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: name
             description: Nome do país
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: modifieddate
             description: Data e hora que o registro foi atualizado pela última vez
             tests:
@@ -186,7 +171,6 @@ sources:
         tests:
           - dbt_expectations.expect_table_column_count_to_equal:
               value: 6
-
         columns:
           - name: businessentityid
             description: Id da loja. Chave primária (PK) e chave estrangeira (FK) da tabela de entidades
@@ -197,13 +181,11 @@ sources:
               - relationships:
                   field: businessentityid
                   to: ref('businessentity')
-
           - name: name
             description: Nome da loja
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: salespersonid
             description: Id do vendedor. Chave estrangeira (FK) da tabela de pessoas
             data_type: int64
@@ -213,16 +195,13 @@ sources:
               - relationships:
                   field: businessentityid
                   to: ref('person')
-
           - name: demographics
             description: dados demográficos da loja
-
           - name: rowguid
             description: Número ROWGUIDCOL que identifica exclusivamente o registro
             tests:
               - unique
               - not_null
-
           - name: modifieddate
             description: Data e hora do registro atualizado pela última vez
             tests:
@@ -258,13 +237,11 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: name
             description: Nome do territorio
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: countryregioncode
             description: Código do páis do território. Chave estrangeira (FK) da tabela de países
             data_type: string
@@ -274,26 +251,20 @@ sources:
               - relationships:
                   field: countryregioncode
                   to: ref('countryregion')
-
           - name: group
             description: Grupo continental do territorio
-
           - name: salesytd
             description: Somatorio de vendas por ano e data (YTD)
             data_type: float64
-
           - name: saleslastyear
             description: Somatorio de vendas do último ano
             data_type: float64
-
           - name: costytd
             description: Somatorio de custo year to date (YTD)
             data_type: float64
-
           - name: costlastyear
             description: Somatorio de custo do último ano
             data_type: float64
-
           - name: modifieddate
             description: Data e hora que o registro foi atualizado pela última vez
             tests:
@@ -313,7 +284,6 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: persontype
             description:
               Tabela que descreve o tipo de pessoas e a relação com a ADW
@@ -323,21 +293,17 @@ sources:
               - accepted_values:
                   values:
                     - ["SC", "IN", "SP", "EM", "VC", "GC"]
-
           - name: namestyle
             description: Estilo de nome (true = E ocidental ou false = Estilo oriental)
             data_type: boolean
             tests:
               - not_null
-
           - name: title
             description: Referencia ao nome ex = Mr ou Ms
-
           - name: firstname
             description: primeiro nome da pessoa
             tests:
               - not_null
-
           - name: middlename
             description: Nome do meio
           - name: lastname
@@ -354,15 +320,12 @@ sources:
                   quote: false
           - name: additionalcontactinfo
             description: Informaçoes adicionais de contato sobre a pessoa - formato xml
-
           - name: demographics
             description: Informações pessoais como hobbies e receitas coletadas on-line. Dados ultilizados para análise de vendas
-
           - name: rowguid
             description: Número ROWGUIDCOL que identifica o registro
             tests:
               - not_null
-
           - name: modifieddate
             description: Data e hora em que o registro foi atualizado pela última vez
             tests:
@@ -382,7 +345,6 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: businessentityid
             description: Id da pessoa. Chave primária (PK) e estrangeira (FK) da tabela de pessoas
             data_type: int64
@@ -392,19 +354,16 @@ sources:
               - relationships:
                   field: businessentityid
                   to: ref('person')
-
           - name: emailaddress
             description: Endereço do e-mail
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: rowguid
             description: Número ROWGUIDCOL que identifica exclusivamente o registro
             tests:
               - unique
               - not_null
-
           - name: modifieddate
             description: Data e hora em que o registro foi atualizado pela última vez
             tests:
@@ -438,7 +397,6 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: productcategoryid
             description: Id da categoria do produto. Chave estrangeira (FK) da tabela de categorias de produtos
             data_type: int64
@@ -448,20 +406,17 @@ sources:
               - relationships:
                   field: productsubcategoryid
                   to: ref('productsubcategory')
-
           - name: name
             description: Nome da sub-categoria do produto
             tests:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: rowguid
             description: Número ROWGUIDCOL que identifica exclusivamente o registro
             tests:
               - unique
               - not_null
-
           - name: modifieddate
             description: Data e hora que o registro foi atualizado pela última vez
             tests:
@@ -480,20 +435,17 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: name
             description: Nome da categoria do produto
             tests:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: rowguid
             description: Número ROWGUIDCOL que identifica exclusivamente o registro
             tests:
               - unique
               - not_null
-
           - name: modifieddate
             description: Data e hora  que o registro foi atualizado pela última vez
             tests:
@@ -528,7 +480,6 @@ sources:
             tests:
               - unique
               - not_null
-
           - name: modifieddate
             description: Data e hora que o registro foi atualizado pela última vez
             tests:
@@ -548,14 +499,12 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: name
             description: Nome da unidade de medida do produto
             tests:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: modifieddate
             description: Data e hora em que o registro foi atualizado pela última vez
             tests:
@@ -577,13 +526,11 @@ sources:
               - relationships:
                   field: businessentityid
                   to: ref('person')
-
           - name: phonenumber
             description: Número do telefone
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: phonenumbertypeid
             description: Tipo de telefone
             data_type: int64
@@ -593,7 +540,6 @@ sources:
               - relationships:
                   field: phonenumbertypeid
                   to: ref('phonenumbertype')
-
           - name: modifieddate
             description: Data e hora em que o registro foi atualizado pela última vez
             tests:
@@ -613,13 +559,11 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: name
             description: Nome do tipo de telefone
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: modifieddate
             description: Data e hora em que o registro foi atualizado pela última vez
             tests:
@@ -639,13 +583,11 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: cardtype
             description: Tipo cartão de crédito
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: cardnumber
             description: numero do cartão de crédito
             data_type: int64
@@ -653,21 +595,18 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: expmonth
             description: mês de expiração do cartão de crédito
             data_type: int64
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: expyear
             description: Ano de expiração do cartão de crédito
             data_type: int64
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: modifieddate
             description: Data e hora em que o registro foi atualizado pela última vez
             tests:
@@ -687,7 +626,6 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: name
             description: Nome da moeda
             tests:
@@ -712,13 +650,11 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: currencyratedate
             description: Data da taxa de câmbio
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: tocurrencycode
             description: Código da moeda de conversão para a taxa de câmbio
             data_type: string
@@ -742,7 +678,6 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: personid
             description: Chave estrangeira (FK) da tabela de pessoas
             data_type: int64
@@ -751,7 +686,6 @@ sources:
               - relationships:
                   field: businessentityid
                   to: ref('person')
-
           - name: storeid
             description: Id da loja chave estrangeira (FK) da tabela de lojas
             data_type: int64
@@ -776,7 +710,6 @@ sources:
               - relationships:
                   field: businessentityid
                   to: ref('person')
-
           - name: creditcardid
             description: Id do cartão de crédito chave primária (PK) e estrangeira (FK) da tabela de cartões de créditos
             data_type: int64
@@ -786,7 +719,6 @@ sources:
               - relationships:
                   field: creditcardid
                   to: ref('creditcard')
-
           - name: modifieddate
             description: Data e hora em que o registro foi atualizado pela última vez
             tests:
@@ -809,7 +741,6 @@ sources:
               - relationships:
                   field: businessentityid
                   to: ref('person')
-
           - name: territoryid
             description: Id do território de vendas chave estrangeira (FK) da tabela de territórios
             data_type: int64
@@ -818,28 +749,21 @@ sources:
               - relationships:
                   field: territoryid
                   to: ref('territory')
-
           - name: salesquota
             description: Valor da cota de vendas do vendedor
-
           - name: bonus
             description: Bônus de vendas do vendedor
-
           - name: commissionpct
             description: Percentual de comissão de vendas do vendedor
-
           - name: salesytd
             description: Valor de vendas ano e data do vendedor
-
           - name: saleslastyear
             description: Valor de vendas do último ano do vendedor
-
           - name: rowguid
             description: Número rowguid que identifica exclusivamente o registro
             tests:
               - unique
               - not_null
-
           - name: modifieddate
             description: Data e hora que o registro foi atualizado pela última vez
             tests:
@@ -858,7 +782,6 @@ sources:
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: salesorderdetailid
             description: Id do item de pedido de vendas. Chave primária (PK) da tabela
             data_type: int64
@@ -866,16 +789,13 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: carriertrackingnumber
             description: Número de rastreamento
-
           - name: orderqty
             description: Quantidade de item do pedido de vendas
             data_type: int64
             tests:
               - not_null
-
           - name: productid
             description: Id do produto. Chave estrangeira (FK) da tabela de taxas de produtos
             data_type: int64
@@ -885,7 +805,6 @@ sources:
               - relationships:
                   field: productid
                   to: ref('product')
-
           - name: specialofferid
             description: Id da promoção chave estrangeira (FK) da tabela de promoções
             data_type: int64
@@ -895,23 +814,19 @@ sources:
               - relationships:
                   field: specialofferid
                   to: ref('specialoffer')
-
           - name: unitprice
             description: Valor unitario do produto do pedido de vendas
             data_type: float64
             tests:
               - not_null
-
           - name: unitpricediscount
             description: Percentual de desconto do pedido de vendas
             data_type: float64
-
           - name: rowguid
             description: Número rowguid que identifica exclusivamente o registro
             tests:
               - unique
               - not_null
-
           - name: modifieddate
             description: Data e hora que o registro foi atualizado pela última vez
             tests:
@@ -933,7 +848,6 @@ sources:
               - relationships:
                   field: salesorderid
                   to: ref('salesorder')
-
           - name: salesreasonid
             description: Id do motivo de vendas chave primária (PK) e estrangeira (FK) da tabela de motivos de vendas
             data_type: int64
@@ -943,7 +857,6 @@ sources:
               - relationships:
                   field: salesreasonid
                   to: ref('salesreason')
-
           - name: modifieddate
             description: Data e hora em que o registro foi atualizado pela última vez
             tests:
@@ -963,32 +876,27 @@ sources:
               - unique
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: revisionnumber
             description: Número de revisão do pedido de vendas
             data_type: int64
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: orderdate
             description: Data do pedido de vendas
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: duedate
             description: Data de pagamento do pedido de vendas
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: shipdate
             description: Data de envio do pedido de vendas
             tests:
               - not_null
               - dbt_expectations.expect_column_to_exist
-
           - name: status
             description: Status do pedido de vendas
             data_type: int64
