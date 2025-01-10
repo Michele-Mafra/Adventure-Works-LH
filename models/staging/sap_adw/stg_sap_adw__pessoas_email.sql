@@ -3,7 +3,7 @@ with
     endereco_email as (
 
         select 
-            cast(businessentityid as int) as id_entidade_empresarial
+            cast(businessentityid as int) as id_pessoa
             , cast(emailaddressid as int) as id_endereco_email
             , emailaddress.emailaddress as endereco_email
             , rowguid as linha_guia

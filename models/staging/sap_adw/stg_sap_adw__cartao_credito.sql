@@ -4,7 +4,7 @@ with
 
         select 
             cast(creditcardid as int) as id_cartao_credito
-            , trim(cardtype) as tipo_cartao_credito
+            , cast(cardtype as string) as tipo_cartao_credito
             , cast(cardnumber as int) as numero_cartao_credito
             , cast(expmonth as int) as numero_expiracao_mes_cartao_credito
             , cast(expyear as int) as numero_expiracao_ano_cartao_credito

@@ -5,7 +5,7 @@ with
         select 
             cast(addressid as int) as id_endereco
             , concat(addressline1,' ',coalesce(addressline2,'')) as ds_endereco
-            , trim(city) as nome_cidade
+            , cast(city as string) as nome_cidade
             , cast(stateprovinceid as int) as id_estado
             , postalcode as nr_cep
             , spatiallocation as localizacao_espacial

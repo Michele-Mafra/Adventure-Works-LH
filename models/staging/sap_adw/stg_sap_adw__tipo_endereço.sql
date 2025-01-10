@@ -4,8 +4,8 @@ with
 
         select 
             cast(addresstypeid as int) as id_tipo_endereco
-            , name as nome
-            , rowguid as linha_guia
+            , cast(name as string) as nome
+            , cast(rowguid as string) as linha_guia
             , cast(format_timestamp('%Y-%m-%d %H:%M:%S', cast(modifieddate as timestamp)) as timestamp) as data_modificacao
         from {{ source('sap_adw', 'addresstype') }}
 

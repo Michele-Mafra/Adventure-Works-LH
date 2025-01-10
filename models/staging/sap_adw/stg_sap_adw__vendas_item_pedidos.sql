@@ -5,7 +5,7 @@ with
         select 
             cast(salesorderid as int) as id_pedido_venda
             , cast(salesorderdetailid as int) as id_pedido_venda_item
-            , trim(carriertrackingnumber) as numero_rastreamento
+            , cast(carriertrackingnumber as string) as numero_rastreamento
             , coalesce(cast(orderqty as int),0) as qt_pedido_item
             , cast(productid as int) as id_produto
             , cast(specialofferid as int) as id_promocao

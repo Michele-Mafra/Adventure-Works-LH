@@ -4,7 +4,7 @@ produto_modelo as (
 
     select 
         cast(productmodelid as int) as id_produto_modelo
-        , trim(name) as nome_modelo_produto
+        , cast(name as string) as nome_modelo_produto
         , case 
             when catalogdescription = '[NULL]'
             then null else catalogdescription 
@@ -13,7 +13,7 @@ produto_modelo as (
             when instructions = '[NULL]' 
             then null else instructions
             end as instrucoes 
-        , rowguid as linha_guia
+        , cast(rowguid as string) as linha_guia
         , cast(format_timestamp('%Y-%m-%d %H:%M:%S', cast(modifieddate as timestamp)) as timestamp) as data_modificacao
     from {{ source('sap_adw', 'productmodel') }}
 

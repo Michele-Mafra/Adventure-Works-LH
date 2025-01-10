@@ -30,8 +30,8 @@ with
                 when additionalcontactinfo = '[null]' then null 
                 else additionalcontactinfo 
             end as contato_adicional
-            , demographics as dados_demograficos
-            , rowguid as linha_guia
+            , cast(demographics as string) as dados_demograficos
+            , cast(rowguid as string) as linha_guia
             , cast(
                 format_timestamp('%Y-%m-%d %H:%M:%S', cast(modifieddate as timestamp)) as timestamp) as data_modificacao        
 
