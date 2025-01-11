@@ -53,7 +53,7 @@ with
             , subcategoria.nome_subcategoria_produto            
             , modelo.descricao_catalago
             --, unidade_medida_produtos.unidade_de_medidas
-      
+                  
         from stg_produtos
         left join subcategoria on subcategoria.id_subcategoria_produto = stg_produtos.id_subcategoria_produto
         left join categoria on categoria.id_produto_categoria = subcategoria.id_categoria_produto

@@ -24,6 +24,6 @@ models:
       - name: nome_pessoa
         description: nome da pessoa
       - name: nome_loja
-        description: nome da loja        
+        description: nome da loja      
 
 

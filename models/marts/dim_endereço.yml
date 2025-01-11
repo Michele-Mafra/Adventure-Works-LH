@@ -1,0 +1,48 @@
+version: 2
+
+models:
+  - name: dim_endereco
+    columns:
+      - name: sk_endereco
+        description: Sk de endereco
+        tests:
+          - unique
+          - not_null
+
+      - name: id_estado
+        description: ID do Estado
+        data_type: int64
+        tests:
+          - not_null
+      - name: nome_cidade
+        description: nomde da cidade
+      - name: ds_endereco
+        description: dados do endereço
+      - name: nome_estado
+        description: nome do estado
+      - name: nome_pais
+        description: nome do pais
+      - name: nr_cep
+        description: numero do cep   
+      - name: codigo_pais
+        description: codigo do pais
+        tests:
+          - not_null
+      - name: is_estado_pais
+        description: is do estado e pais
+      - name: id_territorio
+        description: ID do territorio
+        tests:
+          - not_null
+      - name: pessoa_entidade_id_pessoa
+        description: id da entidade comercial
+        tests:
+        - not_null
+      - name: id_tipo_endereco
+        description: ID do tipo de endereço
+        tests:
+        - not_null
+      - name: tipo_endereco_nome
+        description: nome do tipo de endereço
+      - name: nome_pessoa
+        description: nome da pessoa
