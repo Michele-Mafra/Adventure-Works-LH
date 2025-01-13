@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: dim_localizacao
+    description: Tabela de dimensão de localização
+    columns:
+      - name: sk_localizacao
+        description: Sk de localizacao
+        tests:
+          - unique
+          - not_null
+      - name: id_endereco
+        description: Id de endereco
+        data_type: int64
+        tests:
+          - unique
+          - not_null
+         
+      - name: id_estado
+        description: Id do territorio
+        data_type: int64
+        tests:
+          - not_null
+      - name: nome_cidade      
+        description: nome da cidade
+      - name: codigo_pais
+        description: codigo do pais
+      - name: nome_pais
+        description: nome do pais
+
+
+        
+      
+            

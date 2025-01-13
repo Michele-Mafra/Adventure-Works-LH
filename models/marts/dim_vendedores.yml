@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: dim_vendedores
+    description: Tabela de dimensão de vendedores
+    columns:
+      - name: sk_vendedores
+        description: Sk do vendedores
+        tests:
+          - unique
+          - not_null
+      - name: id_vendedor
+        description: id do vendedor
+      - name: nome_vendedor
+        description: nome do vendedor
+      - name: ds_endereco
+        description: dados do endereço
+      - name: nomde_cidade
+        description: nome da cidade
+      - name: nome_estado
+        description: nome do estado
+      - name: nome_pais
+        description: nome do pais
+      - name: valor_conta_vendas
+        description: valor conta de vendas
+      - name: valor_bonus
+        description: valor de bonus 
+      - name: comissao
+        description: comissao da venda
+      - name: ultima_venda_por_ano
+        description: ultima venda por ano
+      - name: data_ultima_venda
+        description: data da ultima venda
+      - name: qt_pedidos_venda
+        description: quantidade de pedidos por venda
+      - name: valor_total_venda
+        description: valor total das vendas 
+
+
+
+

@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: dim_forma_envio
+    description: dimensão da forma de envio
+    columns:
+      - name: sk_forma_envio
+        description: Sk de endereco
+        tests:
+          - unique
+          - not_null
+
+      - name: id_forma_envio
+        description: ID da forma de envio
+        data_type: int64
+        tests:
+          - unique
+          - not_null
+      - name: nm_forma_envio
+        description: nome da forma de envio 
+      - name: valro_envio_minimo
+        description: valor do envio minimo do produto
+      - name: valor_envio_por_kg
+        description: valor do envio por kg
+       
+              

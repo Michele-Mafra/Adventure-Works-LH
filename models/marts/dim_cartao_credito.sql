@@ -24,7 +24,7 @@ with
             stg_pessoa_cartao_credito.id_cartao_credito = stg_cartao_credito.id_cartao_credito
     )
 
-    , refined as (
+    , join_tables_final as (
         select 
             {{ dbt_utils.generate_surrogate_key(['id_cartao_credito']) }} as sk_cartao_credito
             ,join_tables.*
@@ -32,7 +32,7 @@ with
     )
 
 select *
-from refined
+from join_tables_final
 
 
 

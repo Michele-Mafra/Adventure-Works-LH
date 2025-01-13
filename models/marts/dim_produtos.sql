@@ -23,12 +23,12 @@ with
     , join_tables as (
         select
             stg_produtos.id_produto
-            , stg_produtos.id_subcategoria_produto
-            , stg_produtos.id_modelo_produto
+            --, stg_produtos.id_subcategoria_produto
+            --, stg_produtos.id_modelo_produto
             --, subcategoria.id_subcategoria_produto  
-            , subcategoria.id_categoria_produto
-            , categoria.id_produto_categoria
-            , modelo.id_produto_modelo
+            --, subcategoria.id_categoria_produto
+            --, categoria.id_produto_categoria
+            --, modelo.id_produto_modelo
             , stg_produtos.nome_produto
             , modelo.nome_modelo_produto
             , stg_produtos.cor

@@ -41,9 +41,7 @@ models:
     marts:
       +materialized: table
       +schema: marts
-    utils:
-      +materialized: table
-      +schema: sap_adw
+    
     intermediate:
       +materialized: view
       +schema: intermediate

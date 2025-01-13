@@ -32,7 +32,7 @@ with
         
     )
     
-    , refined as (
+    , join_tables_final as (
         select 
             {{ dbt_utils.generate_surrogate_key(['id_cliente']) }} as sk_cliente
             ,join_tables.*
@@ -40,4 +40,4 @@ with
     )
 
 select *
-from refined
+from join_tables_final

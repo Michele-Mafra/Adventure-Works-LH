@@ -42,12 +42,9 @@ with
             --, stg_pessoas_email.linha_guia
             --, stg_pessoas_email.data_modificacao
          from stg_pessoas
-        left join stg_pessoas_email 
-            on stg_pessoas_email.id_pessoa = stg_pessoas.id_pessoa
-        left join stg_telefones_pessoas 
-            on stg_telefones_pessoas.id_pessoa = stg_pessoas.id_pessoa
-        left join stg_tipo_telefones 
-            on stg_telefones_pessoas.id_telefone = stg_tipo_telefones.id_telefone
+        left join stg_pessoas_email on stg_pessoas_email.id_pessoa = stg_pessoas.id_pessoa
+        left join stg_telefones_pessoas on stg_telefones_pessoas.id_pessoa = stg_pessoas.id_pessoa
+        left join stg_tipo_telefones on stg_telefones_pessoas.id_telefone = stg_tipo_telefones.id_telefone
 
 
     )
