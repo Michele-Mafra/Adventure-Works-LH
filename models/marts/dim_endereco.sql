@@ -33,7 +33,7 @@ with
     , join_tables as (
         select 
             endereco.id_endereco
-            , endereco.id_estado
+            --, endereco.id_estado
             , endereco.ds_endereco
             , endereco.nome_cidade
             , estados.nome_estado
@@ -41,12 +41,11 @@ with
             , endereco.nr_cep
             , estados.codigo_estado
             , estados.codigo_pais
-            , estados.is_estado_pais
-            , estados.id_territorio
-            , pessoas_entidade.id_pessoa as pessoa_entidade_id_pessoa
+            --, estados.is_estado_pais
+            --, estados.id_territorio
+            , pessoas_entidade.id_pessoa
             , pessoas_entidade.id_tipo_endereco
             , tipo_endereco.nome as tipo_endereco_nome
-            , int_pessoas.id_pessoa as int_pessoas_id_pessoa
             , int_pessoas.nome_pessoa
         from endereco
         left join estados on endereco.id_estado = estados.id_estado
