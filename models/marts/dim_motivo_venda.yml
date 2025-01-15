@@ -1,0 +1,27 @@
+models:
+  
+  - name: dim_motivo_venda
+    description: Tabela de dimensão pedidos de venda
+    columns:
+      - name: sk_motivo_venda
+        description: Sk do produto
+        tests:
+          - unique
+          - not_null
+      - name: id_pedido_venda
+        data_type: int64
+        tests:
+         
+          - not_null
+       
+      - name: id_motivo_venda
+        tests:
+          - unique
+          - not_null
+        description: di do motivo da venda
+      - name: nm_motivo_venda
+        description: nome do motivo da venda
+      - name: dt_modificacao
+        description: data da modificação
+
+

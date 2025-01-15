@@ -24,7 +24,7 @@ status_da_venda_pedidos as (
         , cast(salespersonid as int) as id_vendedor
         , cast(territoryid as int) as id_territorio
         , cast(billtoaddressid as int) as id_endereco_cobranca
-        , cast(shiptoaddressid as int) as id_endereco_entrega
+        , cast(shiptoaddressid as int) as id_endereco
         , cast(shipmethodid as int) as id_forma_envio
         , cast(creditcardid as int) as id_cartao_credito
         , cast(creditcardapprovalcode as string) as cd_aprovacao_cartao_credito

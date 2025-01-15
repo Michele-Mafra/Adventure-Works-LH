@@ -19,15 +19,16 @@ with
     , join_tables as (
         select
             cliente.id_cliente
-            , cliente.id_loja
-            , pessoa.id_pessoa
-            , pessoa.tipo_pessoa
             , pessoa.nome_pessoa
-            --, lojas.id_pessoa
+            , cliente.id_loja
+            , pessoa.tipo_pessoa
+            , lojas.id_pessoa
             , lojas.name_loja
+            , lojas.id_vendedor
         from cliente
         left join pessoa on pessoa.id_pessoa = cliente.id_pessoa
-        left join lojas on lojas.id_pessoa = cliente.id_pessoa
+        left join lojas on lojas.id_pessoa = cliente.id_loja
+        
         
         
     )
