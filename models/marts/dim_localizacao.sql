@@ -13,8 +13,7 @@ with
         select * 
         from {{ ref('stg_adw__regiao_pais') }}
     )
-    
-   
+       
    
 
     , join_tables as (

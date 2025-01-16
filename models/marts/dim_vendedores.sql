@@ -46,12 +46,12 @@ with
             , dim_endereco.nome_pais
             , round(stg_vendedores.voluma_cota_vendas,2) as valor_conta_vendas
             , round(stg_vendedores.volume_bonus,2) as valor_bonus
-            , round(stg_vendedores.comissao) as comissao
+            , round(stg_vendedores.comissao,1) as comissao
             , round(stg_vendedores.volume_ultima_venda_por_ano) as valor_ultima_venda_ano
             , vendas_vendedor.dt_primeira_venda
             , vendas_vendedor.data_ultima_venda
             , coalesce(vendas_vendedor.qt_pedidos_venda,0) as qt_pedidos_venda
-            , ROUND(vendas_vendedor.valor_total_venda, 2) as valor_total_venda
+            , ROUND(coalesce(vendas_vendedor.valor_total_venda,0),2) as valor_total_venda
            
         from stg_vendedores
         inner join vendas_vendedor on stg_vendedores.id_vendedor = vendas_vendedor.id_vendedor
