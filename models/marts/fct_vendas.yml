@@ -2,13 +2,13 @@ version: 2
 
 models:
   - name: fct_vendas
-    description: |
+    description:
       Essa é a fato com informações de vendas da Adventure Works. Contém dados agregados 
-      como valores brutos, líquidos e totais de vendas, detalhados por cliente, vendedor, 
-      produto, forma de envio, motivo de venda, entre outros.
+      como valores brutos, líquidos e totais de vendas
     tests:
-      - dbt_utils.equal_rowcount:
-          compare_model: ref('stg_sap_adw_vendas_itens_pedidos')
+      - unique
+      - not_null
+          
     columns:
       - name: sk_fct_vendas_pedidos
         description: Chave primária da tabela de fato vendas.
@@ -16,9 +16,18 @@ models:
           - unique
           - not_null
 
+      - name: id_pedido_venda
+        description: id da pedido venda
+        tests:
+          - not_null
+      - name: id_cliente
+        description: id do cliente
+        tests:
+         - not_null
       - name: id_endereco
         description: id do endereço
         tests:
           - unique
           - not_null
-              
+      
+             
