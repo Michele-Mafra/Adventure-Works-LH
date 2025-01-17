@@ -13,7 +13,8 @@ with
         select *
         from {{ ref('stg_sap_adw__nome_motivo_venda') }}
     )
-            
+
+    
     
     , join_tables as (
         select
@@ -30,7 +31,7 @@ with
     , join_tables_final as (
 
             select 
-                {{ dbt_utils.generate_surrogate_key(['id_motivo_venda']) }} as sk_motivo_venda
+                {{ dbt_utils.generate_surrogate_key(['id_motivo_venda','id_pedido_venda']) }} as sk_motivo_venda
                 ,join_tables.*      
             from join_tables
         )

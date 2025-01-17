@@ -1,10 +1,10 @@
 version: 2
 
 models:
-  - name: dim_vendedores
+  - name: dim_vendedor
     description: Tabela de dimensão de vendedores
     columns:
-      - name: sk_vendedores
+      - name: sk_vendedor
         description: Sk do vendedores
         tests:
           - unique

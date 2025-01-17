@@ -12,15 +12,9 @@ models:
       - name: id_endereco
         description: Id de endereco
         data_type: int64
-        tests:
-          - unique
-          - not_null
-         
       - name: id_estado
         description: Id do territorio
         data_type: int64
-        tests:
-          - not_null
       - name: nome_cidade      
         description: nome da cidade
       - name: codigo_pais

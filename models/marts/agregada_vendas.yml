@@ -1,0 +1,36 @@
+version: 2
+
+models:
+  - name: agregada_vendas
+    description: tabela agredada de vendas por regiao e vendedor
+    columns:
+      - name: id_vendedor
+        description: ID do vendedor
+        tests:
+          - unique
+          - not_null
+      - name: nome_estado
+        description: nomde do estado
+      - name: total_pedido
+        description: total do pedido
+      - name: valor_total_vendas
+        description: Valor total das vendas
+      - name: sub_total
+        description: sub total da venda
+      - name: valor_desconto
+        description: valor com desconto
+      - name: total_frete
+        description: valor total do frete
+      - name: media_total_produto
+        description: media total do produto
+      - name: total_qty_vendas
+        description: total qty de vendas
+      - name: total_vendedor
+        description: total vendedor
+
+
+
+
+
+
+

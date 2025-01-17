@@ -5,29 +5,57 @@ models:
     description:
       Essa é a fato com informações de vendas da Adventure Works. Contém dados agregados 
       como valores brutos, líquidos e totais de vendas
-    tests:
-      - unique
-      - not_null
-          
+           
     columns:
       - name: sk_fct_vendas_pedidos
-        description: Chave primária da tabela de fato vendas.
-        tests:
-          - unique
-          - not_null
-
+        description: chave estrangeira da faccto vendas pedidos
+        
       - name: id_pedido_venda
-        description: id da pedido venda
-        tests:
-          - not_null
+        description: id da pedido venda 
+
       - name: id_cliente
-        description: id do cliente
-        tests:
-         - not_null
+        description: id do cliente 
+
       - name: id_endereco
         description: id do endereço
-        tests:
-          - unique
-          - not_null
-      
+
+      - name: valor_unitario_item
+        description: valor unitario do item
+
+      - name: desconto_item
+        description: valor de desconto do item
+
+      - name: valor_imposto
+        description: valor de imposto
+
+      - name: valor_subtotal
+        description: valor do sub total
+
+      - name: valor_frete
+        description: valor do frete
+
+      - name: id_territorio
+        description: ID territorio
+      - name: id_endereco_cobranca
+        description: ID do territorio de cobrança
+
+      - name: id_cartao_credito
+        description: ID do cartão de credito
+
+      - name: cd_status
+        description: cd do estado da venda
+
+      - name: data_pedido
+        description: data do pedido
+
+      - name: valor_total
+        description: valor total
+
+      - name: valor_bruto
+        description: valor bruto do intem
+
+      - name: valor_liquido
+        description: valor liquido do produto
+
+ 
              

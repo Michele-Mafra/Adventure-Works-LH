@@ -23,7 +23,7 @@ with
           , sum(fct_vendas.qt_pedido_item) as total_produto_qty -- pedidos comprados total
           , sum(fct_vendas.valor_total) as valor_total_vendas -- receita total
           , sum(fct_vendas.valor_subtotal) as sub_total
-          , sum(fct_vendas.desconto_item) as valor_vesconto --desconto
+          , sum(fct_vendas.desconto_item) as valor_desconto --desconto
           , sum(fct_vendas.valor_frete) as total_frete
           , avg(fct_vendas.valor_total) as media_total_produto -- media do produto 
           , count(distinct fct_vendas.id_pedido_venda) as total_qty_vendas
