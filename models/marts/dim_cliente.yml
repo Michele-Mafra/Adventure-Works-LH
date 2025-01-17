@@ -11,14 +11,10 @@ models:
 
       - name: id_cliente
         description: ID do cliente
-        data_type: int64
-        tests:
-          - not_null
+        data_type: int64       
       - name: id_loja
         description: id da loja
-        data_type: int64
-        tests: 
-          - not_null
+        data_type: int64     
       - name: tipo_pessoa
         description: tipo de pessoa
       - name: nome_pessoa

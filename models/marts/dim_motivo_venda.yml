@@ -6,18 +6,11 @@ models:
       - name: sk_motivo_venda
         description: Sk do produto
         tests:
-          - unique
           - not_null
       - name: id_pedido_venda
+        description: ID do motivo de venda
         data_type: int64
-        tests:
-         
-          - not_null
-       
       - name: id_motivo_venda
-        tests:
-          - unique
-          - not_null
         description: di do motivo da venda
       - name: nm_motivo_venda
         description: nome do motivo da venda

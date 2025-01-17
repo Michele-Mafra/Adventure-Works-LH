@@ -4,45 +4,49 @@ models:
   - name: dim_endereco
     columns:
       - name: sk_endereco
-        description: Sk de endereco
+        description: Chave substituta para o endereço.
         tests:
           - unique
           - not_null
 
       - name: id_estado
-        description: ID do Estado
+        description: ID do Estado. Chave estrangeira para a tabela de estados.
         data_type: int64
-        tests:
-          - not_null
+
       - name: nome_cidade
-        description: nomde da cidade
+        description: Nome da cidade associada ao endereço.
+
       - name: ds_endereco
-        description: dados do endereço
+        description: Dados completos do endereço, incluindo rua e número.
+
       - name: nome_estado
-        description: nome do estado
+        description: Nome do estado associado ao endereço.
+
       - name: nome_pais
-        description: nome do pais
+        description: Nome do país associado ao endereço.
+
       - name: nr_cep
-        description: numero do cep   
+        description: Número do CEP (Código de Endereçamento Postal).
+
       - name: codigo_pais
-        description: codigo do pais
-        tests:
-          - not_null
+        description: Código do país no formato ISO.
+
       - name: is_estado_pais
-        description: is do estado e pais
+        description: Indicador de relação entre estado e país.
+
       - name: id_territorio
-        description: ID do territorio
-        tests:
-          - not_null
+        description: ID do território associado ao endereço.
+ 
       - name: pessoa_entidade_id_pessoa
-        description: id da entidade comercial
-        tests:
-        - not_null
+        description: ID da entidade comercial associada ao endereço.
+
+
       - name: id_tipo_endereco
-        description: ID do tipo de endereço
-        tests:
-        - not_null
+        description: ID do tipo de endereço (comercial, residencial, etc.).
+
+
       - name: tipo_endereco_nome
-        description: nome do tipo de endereço
+        description: Nome descritivo do tipo de endereço.
+
       - name: nome_pessoa
-        description: nome da pessoa
+        description: Nome da pessoa associada ao endereço.

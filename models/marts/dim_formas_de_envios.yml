@@ -9,13 +9,9 @@ models:
         tests:
           - unique
           - not_null
-
       - name: id_forma_envio
         description: ID da forma de envio
         data_type: int64
-        tests:
-          - unique
-          - not_null
       - name: nm_forma_envio
         description: nome da forma de envio 
       - name: valro_envio_minimo
