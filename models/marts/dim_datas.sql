@@ -1,7 +1,7 @@
 with 
     generated_dates as (
         select
-            date as sk_date
+            date as dia
         from unnest(generate_date_array(
             cast('2008-01-01' as date),
             cast('2025-12-30' as date),
@@ -11,19 +11,20 @@ with
 
     , exploded_dates as (
         select
-            sk_date
-            , extract(year from sk_date) as year
-            , extract(month from sk_date) as month
-            , extract(day from sk_date) as day
-            , extract(dayofweek from sk_date) as day_of_week
-            , extract(week from sk_date) as week
-            , extract(quarter from sk_date) as quarter
+            dia
+            , extract(year from dia) as year
+            , extract(month from dia) as month
+            , extract(day from dia) as day
+            , extract(dayofweek from dia) as day_of_week
+            , extract(week from dia) as week
+            , extract(quarter from dia) as quarter
         from generated_dates
     )
 
     , final as (
         select 
-            sk_date,
+            {{ dbt_utils.generate_surrogate_key(['dia', 'year']) }} as sk_data,
+            dia,
             year,
             month,
             case 
