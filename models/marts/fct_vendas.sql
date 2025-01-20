@@ -127,11 +127,13 @@ with
         left join dim_datas on stg_status_da_venda_pedidos.data_pedido = dim_datas.dia
         left join dim_localizacao on stg_status_da_venda_pedidos.id_endereco = dim_localizacao.id_endereco
         left join dim_cliente on dim_cliente.id_cliente = stg_status_da_venda_pedidos.id_cliente
-        left join dim_cartao_credito on stg_status_da_venda_pedidos.id_pedido_venda = dim_cartao_credito.id_cartao_credito
         left join dim_endereco on dim_localizacao.id_endereco = dim_endereco.id_endereco
-        left join dim_produtos on stg_sap_adw__vendas_item_pedidos.id_pedido_venda_item = dim_produtos.id_produto
-        left join dim_vendedor on dim_cliente.id_cliente = dim_vendedor.id_vendedor
+        left join dim_cartao_credito on stg_status_da_venda_pedidos.id_cartao_credito = dim_cartao_credito.id_cartao_credito
+        left join dim_produtos on stg_sap_adw__vendas_item_pedidos.id_produto = dim_produtos.id_produto
+        left join dim_vendedor on stg_status_da_venda_pedidos.id_vendedor = dim_vendedor.id_vendedor
+        --left join dim_motivo_vendas on  stg_sap_adw__vendas_item_pedidos.id_pedido_venda = dim_motivo_vendas.id_pedido_venda
         --left join dim_formas_de_envios on stg_status_da_venda_pedidos.id_pedido_venda = dim_formas_de_envios.id_forma_envio
+
 
 
         

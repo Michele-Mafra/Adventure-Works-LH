@@ -34,7 +34,7 @@ vars:
 # as tables. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
 models:
- adventure_works_h: # <-- Name of the project. If you renamed your project you have to change this as well
+ adventure_works_lh: # <-- Name of the project. If you renamed your project you have to change this as well
     staging:
       +materialized: view
       +schema: stg
