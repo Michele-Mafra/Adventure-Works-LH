@@ -6,7 +6,7 @@ models:
       - dbt_utils.equal_rowcount:
           compare_model: ref('dim_datas')
     columns:
-      - name: sk_date
+      - name: dia
         description: Data no formato YYYY-MM-DD
         tests:
           - not_null

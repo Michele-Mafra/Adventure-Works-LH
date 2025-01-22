@@ -26,9 +26,9 @@ with
 
     , join_tables_final as (
         select 
-            {{ dbt_utils.generate_surrogate_key(['id_cartao_credito']) }} as sk_cartao_credito
+            {{ dbt_utils.generate_surrogate_key(['id_cartao_credito','numero_cartao_credito']) }} as sk_cartao_credito
             ,join_tables.*
-            from join_tables
+        from join_tables
     )
 
 select *

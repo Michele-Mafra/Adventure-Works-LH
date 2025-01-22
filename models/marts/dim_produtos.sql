@@ -52,7 +52,7 @@ with
             , stg_produtos.descontinuado                        
             , subcategoria.nome_subcategoria_produto            
             , modelo.descricao_catalago
-            --, unidade_medida_produtos.unidade_de_medidas
+            , categoria.nome_categoria
                   
         from stg_produtos
         left join subcategoria on subcategoria.id_subcategoria_produto = stg_produtos.id_subcategoria_produto
